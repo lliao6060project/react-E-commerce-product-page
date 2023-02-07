@@ -1,0 +1,1 @@
+export const mobileDevice = window.matchMedia("only screen and (max-width: 992px)").matches;
