@@ -43,7 +43,8 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 			max-lg:w-[110vw]
 			max-lg:translate-x-[-100%]
 			max-lg:bg-black/[.75]
-			transition duration-500
+			transition
+			duration-700
 		'
 		onClick={mobileDevice ? closeMenu : onNavClick}
 		>
@@ -56,9 +57,9 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 			<ul
 				className="
 					px-10
-					fw-bold
 					text-xl
 					text-black
+					lg:text-gray-500
 					text-left
 					lg:text-base
 					lg:text-center
@@ -89,7 +90,7 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 								}
 							>
 								<Link
-									activeClass="active fw-bold border-b-4 border-[#ff7300] lg:h-[100px]"
+									activeClass="active fw-bold text-black border-b-4 border-[#ff7300] lg:h-[100px]"
 									to={`block-${navItem}`}
 									offset={-100}
 									spy={true}
