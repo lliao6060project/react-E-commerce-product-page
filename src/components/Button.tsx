@@ -7,7 +7,8 @@ interface BaseButton extends PropsWithChildren {
   action?: () => any
 }
 
-const Button = ({size, type, children, action}: BaseButton) => {
+const Button = ({...props}: BaseButton) => {
+  const { size, type, children, action } = props
   const classNames = `d-inline-block user-select-none active-scale ${ButtonType[type]} ${ButtonSize[size]}`;
   return (
     <button

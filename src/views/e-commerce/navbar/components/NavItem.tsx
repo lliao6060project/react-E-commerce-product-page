@@ -12,6 +12,7 @@ interface NavItemProps extends PropsWithChildren {
 
 const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}, ref) => {
 	const { navList } = props
+
 	const closeMenu = () => {
 		const menuRef = (ref as unknown as HTMLDivElement | any)
 		const closeMenuIcon: unknown = menuRef.current?.children[0]
@@ -90,7 +91,7 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 								}
 							>
 								<Link
-									activeClass="active fw-bold text-black border-b-4 border-[#ff7300] lg:h-[100px]"
+									activeClass="active fw-bold text-black border-b-4 border-tritanomaly lg:h-[100px]"
 									to={`block-${navItem}`}
 									offset={-100}
 									spy={true}
