@@ -1,5 +1,7 @@
 import React from "react"
 import Navbar from "./navbar"
+import PhotoGallery from "@/components/Lightbox"
+import CartList from "./cart/components/CartList"
 
 const navList: string[] = [
 	'Collections',
@@ -20,13 +22,20 @@ const Layout = () => {
 				outerSize={layoutOuterSize}
 			/>
 			<main className={`${layoutOuterSize} flex-auto mx-auto border`}>
+				<div className="block xl:hidden">
+					<CartList />
+				</div>
+				<div className="w-11/12 md:w-10/12 mx-auto grid grid-cols-1 xl:grid-cols-2">
+					<PhotoGallery />
+					<div className="border min-h-[500px] mt-8 xl:mt-0">123</div>
+				</div>
 				{
 					navList.map((item, i) => {
 						return (
 							<React.Fragment key={`${item}-${i}`}>
 								<section
 									id={`block-${item}`}
-									className="w-11/12 md:w-10/12 mx-auto min-h-screen text-justify px-3 py-3 scroll-mt-[120px]"
+									className="w-11/12 md:w-10/12 mx-auto min-h-screen text-justify py-3 scroll-mt-[120px]"
 								>
 									<h3 className="text-2xl bold py-4 fw-bold">{item} Block</h3>
 									<p className="leading-relaxed">

@@ -2,20 +2,26 @@ const CartList = ({...props}) => {
   return (
     <>
       <div className="
-        invisible
-        w-52
-        absolute
-        top-24
-        -left-28
+        block
         border
         border-gray-300/50
         rounded-md
         bg-white
         shadow-lg
         shadow-gray-400/50
-        md:-left-44
-        md:w-80
-        group-hover:visible
+        w-full
+        mt-5
+        mb-16
+        mx-auto
+        md:w-10/12
+        lg:w-11/12
+        xl:m-0
+        xl:group-hover:visible
+        xl:invisible
+        xl:absolute
+        xl:w-80
+        xl:-left-[9vw]
+        xl:top-[72px]
       "
       >
         {/* triangles */}

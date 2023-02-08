@@ -6,7 +6,7 @@ import Ecommerce from './views/e-commerce'
 
 const App = () => {
 	useEffect(() => {
-		document.body.classList.add('pt-0', 'md:pt-44', 'xl:pt-48');
+		document.body.classList.add('pt-[100px]', 'xl:pt-48');
 	}, [])
   return (
 		<Router>

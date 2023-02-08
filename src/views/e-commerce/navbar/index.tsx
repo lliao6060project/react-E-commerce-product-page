@@ -19,7 +19,9 @@ const Navbar = ({...props}: Navbar) => {
 				<div className="relative car-block flex items-center cursor-pointer group">
 					<Cart />
 					<Avatar />
-					<CartList />
+					<div className="hidden xl:block">
+						<CartList />
+					</div>
 				</div>
 			</nav>
 		</header>
