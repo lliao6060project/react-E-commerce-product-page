@@ -41,7 +41,7 @@ const CartList = ({...props}) => {
           <div className="cart-list-wrapper__header border-b p-4 flex items-center">
             Cart
           </div>
-          <ul role="list" className="mx-auto max-w-md bg-white p-4">
+          <ul role="list" className="mx-auto xl:max-w-md bg-white p-2 xl:p-4">
             <li className="group/item relative flex items-center justify-between p-2 hover:bg-slate-100 [&:not(:last-child)]:border-b">
               <div className="flex gap-4">
                 <div className="flex-shrink-0">

@@ -17,7 +17,7 @@ const PhotoGallery = () => {
 
   return (
     <>
-      <div className="photo-album pr-24">
+      <div className="photo-album xl:pr-24">
         {/* <Lightbox
           slides={advancedSlides[active !== -1 ? active : 0]}
           plugins={[Inline]}
@@ -32,7 +32,7 @@ const PhotoGallery = () => {
         <div className="photo-album__main-image flex-center">
           <img src={active !== -1 ? advancedSlides[active]?.src : advancedSlides[0]?.src} className="object-cover w-96 h-96 mb-4"/>
         </div>
-        <div className="photo-album__images grid grid-cols-2 xl:grid-cols-4 gap-5">
+        <div className="photo-album__images grid grid-cols-2 lg:grid-cols-4 gap-5">
           {
             advancedSlides.map((img: { src: string | undefined; }, index: number) => {
               return (
@@ -44,7 +44,7 @@ const PhotoGallery = () => {
                     ${index === active || active === -1 && index === 0 ? "border-4 rounded-lg border-[#ff7300]" : ''}
                   `}
                 >
-                  <img src={img.src} className="object-cover w-64 h-48 xl:w-48 xl:h-32"/>
+                  <img src={img.src} className="object-cover w-full h-48 xl:w-48 xl:h-32"/>
                 </div>
               )
             })
