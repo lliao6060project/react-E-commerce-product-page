@@ -6,4 +6,4 @@
 ### use plugin
 - [constate 迷你倉庫](https://github.com/diegohaz/constate)(暫時沒用)
 - [React Scroll nav-item跟隨滾動](https://www.npmjs.com/package/react-scroll)
-- [yet-another-react-lightbox](https://github.com/igordanchenko/yet-another-react-lightbox)
+- [yet-another-react-lightbox](https://github.com/igordanchenko/yet-another-react-lightbox)(原本有用拿掉了 自己寫一個比較快)

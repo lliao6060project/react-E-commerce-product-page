@@ -36,7 +36,7 @@ const TodoItem = ({todos, editingTodo, onEditTodo, onDeleteTodo }: TodoItemProps
           <Title>Todo</Title>
           <Title>Actions</Title>
         </li>
-        <li className={`${!todos.length ? 'relative block min-h-[100px] border-l-2 border-r-2 border-b-2': 'hidden'}`}>
+        <li className={`${!todos.length ? 'relative block min-h-[120px] border-l-2 border-r-2 border-b-2': 'hidden'}`}>
           <p className='h-full align-center flex items-center'>NO TODO</p>
         </li>
         {

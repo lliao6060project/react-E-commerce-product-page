@@ -12,8 +12,8 @@ interface Navbar extends PropsWithChildren {
 const Navbar = ({...props}: Navbar) => {
 	const { navList, outerSize } = props
 	return (
-		<header className="fixed top-0 w-screen h-[100px] bg-white z-[999]">
-			<nav className={`${outerSize} w-11/12 relative h-[100px] mx-auto flex justify-between border-b border-[#ddd]`}>
+		<header className="fixed top-0 w-screen h-[120px] bg-white z-[999]">
+			<nav className={`${outerSize} w-11/12 relative h-[120px] mx-auto flex justify-between border-b border-[#ddd]`}>
 				<LogoMenu navList={navList}/>
 				{/* right cart and avatar */}
 				<div className="relative car-block flex items-center cursor-pointer group">

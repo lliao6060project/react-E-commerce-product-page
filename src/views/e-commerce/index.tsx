@@ -1,6 +1,6 @@
 import React from "react"
 import Navbar from "./navbar"
-import PhotoGallery from "@/components/Lightbox"
+import PhotoGallery from "./photo-gallery/index"
 import CartList from "./cart/components/CartList"
 
 const navList: string[] = [
@@ -27,7 +27,7 @@ const Layout = () => {
 				</div>
 				<div className="w-11/12 md:w-10/12 mx-auto grid grid-cols-1 xl:grid-cols-2">
 					<PhotoGallery />
-					<div className="border min-h-[500px] mt-8 xl:mt-0">123</div>
+					<div className="border mt-8 xl:mt-0">123</div>
 				</div>
 				{
 					navList.map((item, i) => {
@@ -50,7 +50,7 @@ const Layout = () => {
 					})
 				}
 			</main>
-			<footer className="flex-center h-[100px] shrink-0 bg-red-400">footer</footer>
+			<footer className="flex-center h-[120px] shrink-0 bg-red-400">footer</footer>
 		</div>
 	)
 }

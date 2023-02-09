@@ -91,7 +91,7 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 								}
 							>
 								<Link
-									activeClass="active fw-bold text-black border-b-4 border-tritanomaly lg:h-[100px]"
+									activeClass="active fw-bold text-black border-b-4 border-tritanomaly lg:h-[120px]"
 									to={`block-${navItem}`}
 									offset={-100}
 									spy={true}
