@@ -47,7 +47,7 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
         <div className="
           w-11/12
           xl:w-2/3
-          absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] lg:-translate-y-[42%]
+          absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] xl:-translate-y-[55%]
           py-12
         ">
           <div className="
@@ -56,8 +56,9 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
             w-11/12
             h-80
             md:max-w-lg
-            md:h-[60vh]
+            md:h-[45vh]
             lg:max-w-2xl
+            xl:h-[60vh]
           "
           >
             {/* close icon */}

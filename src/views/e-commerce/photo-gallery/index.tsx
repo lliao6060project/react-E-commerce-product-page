@@ -1,7 +1,7 @@
 import { useState, } from "react";
 import { advancedSlides } from "@/components/lightbox/slides";
 import Lightbox from '@/components/Lightbox'
-import { isMobileDevice } from '@/composable/useUtils'
+import { mobileDevice } from '@/composable/useUtils'
 
 const PhotoGallery = () => {
   const [open, setOpen] = useState(false)
@@ -9,14 +9,14 @@ const PhotoGallery = () => {
 
   // only used in pc
   const openLightbox = () => {
-    if(!isMobileDevice()) {
+    if(!mobileDevice) {
       setOpen(true)
       setActive(active !== -1 ? active : 0)
     }
   }
 
   const onThumbnailsClick = (index: number) => {
-    if(!isMobileDevice()) {
+    if(!mobileDevice) {
       setActive(index)
       setOpen(true)
     }
@@ -38,19 +38,19 @@ const PhotoGallery = () => {
 
   return (
     <>
-      <div className="photo-album xl:pr-24">
+      <div className="photo-album">
         <div
-          className="photo-album__main-image flex-center cursor-pointer relative"
+          className="photo-album__main-image flex-center cursor-pointer relative xl:max-w-xl mx-auto"
           onClick={() => openLightbox()}
         >
           <img
             src={active !== -1 ? advancedSlides[active]?.src : advancedSlides[0]?.src}
-            className="object-contain w-full mb-5 md:mb-8 xl:rounded-xl xl:h-2/3 xl:object-cover"
+            className="object-contain w-full md:w-96 mb-5 md:mb-8 lg:rounded-xl xl:object-cover"
           />
           {/* pre */}
           <div className="
             block
-            xl:hidden
+            lg:hidden
             absolute
             top-[50%]
             -translate-y-[50%]
@@ -79,7 +79,7 @@ const PhotoGallery = () => {
           {/* next */}
           <div className="
             block
-            xl:hidden
+            lg:hidden
             absolute
             top-[50%]
             -translate-y-[50%]
@@ -112,7 +112,9 @@ const PhotoGallery = () => {
           gap-6
           md:gap-10
           hidden
-          xl:grid
+          lg:grid
+          xl:mx-auto
+          xl:max-w-xl
         ">
           {
             advancedSlides.map((img: { src: string | undefined; }, index: number) => {

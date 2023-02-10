@@ -11,7 +11,7 @@ const navList: string[] = [
 	'Contact'
 ]
 
-const layoutOuterSize = `w-full md:w-10/12 lg:w-11/12`
+const layoutOuterSize = `w-full md:w-10/12 lg:w-10/12`
 
 
 const Layout = () => {
@@ -21,13 +21,29 @@ const Layout = () => {
 				navList={navList}
 				outerSize={layoutOuterSize}
 			/>
-			<main className={`${layoutOuterSize} flex-auto mx-auto border`}>
+			<main className={`${layoutOuterSize} flex-auto mx-auto`}>
 				{/* <div className="block xl:hidden">
 					<CartList />
 				</div> */}
-				<div className="w-full mx-auto grid grid-cols-1 xl:grid-cols-2">
+				<div className="w-full lg:w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-2 pb-20 gap-20 xl:gap-28">
 					<PhotoGallery />
-					<div className="border">123</div>
+					<div className="tracking-wider w-11/12 lg:w-10/12 mx-auto">
+						<h3 className="text-tritanomaly font-bold text-base pb-5">SNEAKER COMPANY</h3>
+						<h2 className="lg:text-3xl xl:text-4xl font-bold leading-tight">Fall Limited Edition Sneakers</h2>
+						<p className="text-gray-400 pt-10">
+							These low-profile sneakers are your perfect casual wear companion.
+							Featuring a durable rubber outer sole. they'll withstand everything the weather can offer.
+						</p>
+
+						<div className="w-5/12 pt-10">
+							<div className="flex items-center font-bold pb-4">
+								<h3 className="text-3xl flex-start mr-4">$125.00</h3>
+								<div className="text-sm text-tritanomaly bg-orange-100 / 2 rounded-lg px-3 py-1">50%</div>
+							</div>
+							<p className="text-gray-400 line-through">$250.00</p>
+						</div>
+
+					</div>
 				</div>
 				{
 					navList.map((item, i) => {
@@ -35,9 +51,9 @@ const Layout = () => {
 							<React.Fragment key={`${item}-${i}`}>
 								<section
 									id={`block-${item}`}
-									className="w-11/12 md:w-10/12 mx-auto min-h-screen text-justify py-3 scroll-mt-[120px]"
+									className="w-11/12 lg:w-10/12 mx-auto min-h-screen text-justify py-3 scroll-mt-[120px]"
 								>
-									<h3 className="text-2xl bold py-4 fw-bold">{item} Block</h3>
+									<h3 className="text-2xl bold py-4 font-bold">{item} Block</h3>
 									<p className="leading-relaxed">
 										Lorem ipsum is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It's also called placeholder (or filler) text. It's a convenient tool for mock-ups. It helps to outline the visual elements of a document or presentation, eg typography, font, or layout. Lorem ipsum is mostly a part of a Latin text by the classical author and philosopher Cicero. Its words and letters have been changed by addition or removal, so to deliberately render its content nonsensical; it's not genuine, correct, or comprehensible Latin anymore. While lorem ipsum's still resembles classical Latin, it actually has no meaning whatsoever. As Cicero's text doesn't contain the letters K, W, or Z, alien to latin, these, and others are often inserted randomly to mimic the typographic appearence of European languages, as are digraphs not to be found in the original.
 
