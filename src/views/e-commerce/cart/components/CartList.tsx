@@ -57,7 +57,7 @@ const CartList = ({...props}) => {
                   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAg0lEQVR4nGNgIAw4GBgYdBkYGKwZGBhs0bA1VA6khmKgi8UCWzQMUkMxgPmEG4scD5LPSAL6RLieWKyPyxJbGuGBs4juwJZePrEd9hbBALF821GLbEeDjmE0MTCM5qOhlhhsaVWomlPBEnNiLFKggkUgMwgCRqhCcnwG0gPSCzIDBQAAdmVTlC+giPkAAAAASUVORK5CYII=" className="w-4"/>
                 </span>
                 <svg className="mt-px h-5 w-5 text-slate-400 transition group-hover/edit:translate-x-0.5 group-hover/edit:text-slate-500" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd"></path>
+                  <path className="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd"></path>
                 </svg>
               </a>
             </li>

@@ -22,12 +22,12 @@ const Layout = () => {
 				outerSize={layoutOuterSize}
 			/>
 			<main className={`${layoutOuterSize} flex-auto mx-auto border`}>
-				<div className="block xl:hidden">
+				{/* <div className="block xl:hidden">
 					<CartList />
-				</div>
-				<div className="w-11/12 md:w-10/12 mx-auto grid grid-cols-1 xl:grid-cols-2">
+				</div> */}
+				<div className="w-full mx-auto grid grid-cols-1 xl:grid-cols-2">
 					<PhotoGallery />
-					<div className="border mt-8 xl:mt-0">123</div>
+					<div className="border">123</div>
 				</div>
 				{
 					navList.map((item, i) => {

@@ -1,5 +1,5 @@
-import { PropsWithChildren, useState } from 'react'
-import { useEffect, forwardRef } from "react";
+import type { PropsWithChildren } from 'react'
+import { useEffect, useState } from "react";
 
 interface LightboxProps extends PropsWithChildren {
   open: Boolean
@@ -8,28 +8,19 @@ interface LightboxProps extends PropsWithChildren {
   onClose?: () => void
 }
 
-const Lightbox = forwardRef<HTMLDivElement, LightboxProps>(({onClose, open = false, ...props}: LightboxProps) => {
+const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
   const { slides, active } = props
   const [current, setCurrent] = useState(0)
 
-  const onPrevClick = () => {
+  const onArrowClick = ({ action = 'prev' }) => {
     if(!slides.length) return
     if(slides.length > 1) {
-      const prevImg = slides[current -1] ? slides[current -1] : current
-      if(prevImg.src) {
-        const index = slides.findIndex((item) => item.src === prevImg?.src)
-        setCurrent(index)
-      }
-    }
-  }
-
-  const onNextClick = () => {
-    if(!slides.length) return
-    if(slides.length > 1) {
-      const nextImg = slides[current +1] ? slides[current +1] : current
-      if(nextImg.src) {
+      const nextImg = action === 'prev' ? slides[current -1] : slides[current +1]
+      if(nextImg && nextImg.src) {
         const index = slides.findIndex((item) => item.src === nextImg?.src)
         setCurrent(index)
+      } else {
+        action === 'prev' ? setCurrent(slides.length-1) : setCurrent(0)
       }
     }
   }
@@ -45,13 +36,18 @@ const Lightbox = forwardRef<HTMLDivElement, LightboxProps>(({onClose, open = fal
   useEffect(() => {
     setCurrent(active)
   }, [active])
+
+  useEffect(() => {
+    console.log('子組件渲染')
+  }, [])
+
   return (
     <>
       <div className={`${open ? 'fixed w-screen top-0 left-0 right-0 bottom-0 bg-black/[.75] z-[999]' : 'hidden'}`}>
         <div className="
           w-11/12
           xl:w-2/3
-          align-center
+          absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] lg:-translate-y-[42%]
           py-12
         ">
           <div className="
@@ -59,17 +55,22 @@ const Lightbox = forwardRef<HTMLDivElement, LightboxProps>(({onClose, open = fal
             mx-auto
             w-11/12
             h-80
-            md:w-10/12
-            md:h-[600px]
-            xl:max-w-2xl
+            md:max-w-lg
+            md:h-[60vh]
+            lg:max-w-2xl
           "
           >
             {/* close icon */}
             <div
-              className="absolute -top-10 -right-2 cursor-pointer"
+              className="absolute -top-10 -right-2 cursor-pointer group"
               onClick={onClose}
             >
-              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAxElEQVR4nO2WwQrCMBBE5ycs+pEBcf3LeNKDnzOi6SUoye5mIVA7kEvb4WW3zXSBXX8pChYKbutaBvxZ7WfCgYI7BVzXk2ec1FCvn2WnrNYFD83OP5WWZ2u/IPvACngDqgSnr1ax17au54pjF2yFh0Et8HCo6r29r7fuOY5hpU5VsZUOwOOgBng8VA02JFx8q6Pg9Hxco3DOOE5UhIMnXpuyJFIYnI4YDIFz2m9RZg0C6cfoYkikIT/LsJZNw1qgf9c29AJVV7HHB+D8tAAAAABJRU5ErkJggg==" />
+              <span className="block group-hover:hidden">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtUlEQVR4nO2WSwqEMBBEvYSi9z9OXI0Lj/NkUJDJwv6kBmHGgqy0eN1tUqbrHv2lgAGYjzU0+IvbD/TAi1MrMAWgOT97pbUWT+VHp+93a5Us2IRfQN3gvhoV1tgcntEER+EyaAQuhzq/22I8Cx/DDxldaTttgOugAbgeGgC7E+4bo9bAyW2uNjh3HCcc4ZCJ10tFEkkGJxGDEjg3/hbnKNQBL9mrizuRmvzslZfQZU3of/Qb2gDIApP3EFwGCQAAAABJRU5ErkJggg==" />
+              </span>
+              <span className="hidden group-hover:block">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAxElEQVR4nO2WwQrCMBBE5ycs+pEBcf3LeNKDnzOi6SUoye5mIVA7kEvb4WW3zXSBXX8pChYKbutaBvxZ7WfCgYI7BVzXk2ec1FCvn2WnrNYFD83OP5WWZ2u/IPvACngDqgSnr1ax17au54pjF2yFh0Et8HCo6r29r7fuOY5hpU5VsZUOwOOgBng8VA02JFx8q6Pg9Hxco3DOOE5UhIMnXpuyJFIYnI4YDIFz2m9RZg0C6cfoYkikIT/LsJZNw1qgf9c29AJVV7HHB+D8tAAAAABJRU5ErkJggg==" />
+              </span>
             </div>
 
             {/* pre */}
@@ -87,14 +88,14 @@ const Lightbox = forwardRef<HTMLDivElement, LightboxProps>(({onClose, open = fal
               lg:h-16
               cursor-pointer group
               "
-              onClick={() => onPrevClick()}
+              onClick={() => onArrowClick({action: 'prev'})}
             >
               <span className="align-center">
                 <i className="block group-hover:hidden">
-                  <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd" /></svg>
+                  <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#1D2026" strokeWidth="3" fill="none" className="evenodd" /></svg>
                 </i>
                 <i className="hidden group-hover:block">
-                  <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#ff7300" stroke-width="3" fill="none" fill-rule="evenodd" /></svg>
+                  <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#ff7300" strokeWidth="3" fill="none" className="evenodd" /></svg>
                 </i>
               </span>
             </div>
@@ -115,14 +116,14 @@ const Lightbox = forwardRef<HTMLDivElement, LightboxProps>(({onClose, open = fal
               cursor-pointer
               group
             "
-              onClick={() => onNextClick()}
+              onClick={() => onArrowClick({action: 'next'})}
             >
               <span className="align-center">
                 <i className="block group-hover:hidden">
-                  <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
+                  <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" strokeWidth="3" fill="none" className="evenodd"/></svg>
                 </i>
                 <i className="hidden group-hover:block">
-                  <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#ff7300" stroke-width="3" fill="none" fill-rule="evenodd"/></svg>
+                  <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#ff7300" strokeWidth="3" fill="none" className="evenodd"/></svg>
                 </i>
               </span>
             </div>
@@ -145,15 +146,15 @@ const Lightbox = forwardRef<HTMLDivElement, LightboxProps>(({onClose, open = fal
             grid
             grid-cols-4
             mx-auto
-            mt-8
-            px-8
+            mt-5
             gap-5
-            md:px-24
-            lg:px-28
-            xl:max-w-xl
+            px-4
+            md:px-0
+            max-w-xs
+            md:max-w-md
+            lg:max-w-xl
             xl:gap-3
             xl:mt-12
-            xl:px-0
           "
           >
             {
@@ -184,6 +185,6 @@ const Lightbox = forwardRef<HTMLDivElement, LightboxProps>(({onClose, open = fal
       </div>
     </>
   );
-});
+};
 
 export default Lightbox;
