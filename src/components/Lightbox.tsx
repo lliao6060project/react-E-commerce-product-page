@@ -47,7 +47,7 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
         <div className="
           w-11/12
           xl:w-2/3
-          absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] xl:-translate-y-[55%]
+          absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] 2xl:-translate-y-[55%]
           py-12
         ">
           <div className="

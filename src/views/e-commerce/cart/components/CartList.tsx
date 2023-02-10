@@ -21,7 +21,7 @@ const CartList = ({...props}) => {
         xl:absolute
         xl:w-80
         xl:-left-[9vw]
-        xl:top-[72px]
+        xl:top-28
       "
       >
         {/* triangles */}

@@ -25,7 +25,7 @@ const Layout = () => {
 				{/* <div className="block xl:hidden">
 					<CartList />
 				</div> */}
-				<div className="w-full lg:w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-2 pb-20 gap-20 xl:gap-28">
+				<div className="w-full lg:w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-2 pb-20 gap-20 xl:gap-5 2xl:gap:20">
 					<PhotoGallery />
 					<div className="tracking-wider w-11/12 lg:w-10/12 mx-auto">
 						<h3 className="text-tritanomaly font-bold text-base pb-5">SNEAKER COMPANY</h3>
