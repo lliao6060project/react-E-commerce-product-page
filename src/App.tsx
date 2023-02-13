@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useEffect } from 'react'
-import Counter from './components/Counter'
+import { Provider } from 'react-redux';
+import store from '@/store/store';
+
 import TodoList from './views/todo-list'
 import Ecommerce from './views/e-commerce'
 
@@ -9,7 +11,8 @@ const App = () => {
 		document.body.classList.add('pt-[120px]', 'lg:pt-48');
 	}, [])
   return (
-		<Router>
+		<Provider store={store}>
+			{/* Router */}
 			<div className='app w-full'>
 				<Ecommerce />
 				{/* <ul className='flex-center'>
@@ -32,7 +35,7 @@ const App = () => {
 					</Routes>
 				</div> */}
 			</div>
-		</Router>
+		</Provider>
   )
 }
 

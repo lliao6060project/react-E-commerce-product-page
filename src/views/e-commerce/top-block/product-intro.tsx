@@ -1,12 +1,13 @@
 import { useRef, useState } from "react"
 import Button from "@/components/Button"
 import Counter from "@/components/Counter"
+import { useSelector, useDispatch } from "react-redux";
 
 const ProductIntro = () => {
   const counteRef = useRef<HTMLDivElement>(null)
-  const [count, setCount] = useState(0)
   const min = 0
   const max = 10
+  const count = useSelector((state: Record<string, number>) => state.value)
 
   return (
     <>
@@ -47,12 +48,8 @@ const ProductIntro = () => {
         <div className="grid grid-cols-1 gap-5 my-3 lg:h-14 lg:grid-cols-5 xl:my-10 xl:mb-0">
           <div className="lg:col-span-2 h-14">
             <Counter
-              ref={counteRef}
-              count={count}
               min={min}
               max={max}
-              onMiuns={() => setCount((count: number) => count > min ? count - 1 : count)}
-              onPlus={() => setCount((count: number) => count >= max ? count : count + 1)}
             />
           </div>
 
@@ -64,7 +61,8 @@ const ProductIntro = () => {
             flex-center
             hover:opacity-70
             lg:col-span-3
-            ${count > min ? 'cursor-pointer' : 'cursor-not-allowed'}`
+            ${count > min ? 'cursor-pointer' : 'cursor-not-allowed'} 
+          `
           }>
             <div className="text-lg text-white flex justify-around">
               <span className="flex items-center justify-end">
