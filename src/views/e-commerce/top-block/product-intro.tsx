@@ -2,7 +2,7 @@ import Counter from "@/components/Counter"
 import { useSelector, useDispatch } from "react-redux";
 
 const ProductIntro = () => {
-  const { count, min, max } = useSelector((state: Record<string, number>) => state)
+  const { value:count, min, max } = useSelector((state: Record<string, number>) => state)
   const dispatch = useDispatch()
 
   const addToCart = () => {
