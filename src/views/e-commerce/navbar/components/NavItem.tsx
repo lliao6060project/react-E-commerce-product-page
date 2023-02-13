@@ -32,23 +32,23 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 		<div
 			ref={ref}
 			className='
-			nav-item
-			h-screen
-			top-0
-			left-[-10%]
-			lg:w-auto
-			lg:h-auto
-			lg:static
-			max-lg:absolute
-			max-lg:flex-start
-			max-lg:w-[110vw]
-			max-lg:translate-x-[-100%]
-			max-lg:bg-black/[.75]
-			transition
-			duration-700
-			z-[999]
-		'
-		onClick={mobileDevice ? closeMenu : onNavClick}
+				nav-item
+				h-screen
+				top-0
+				left-[-10%]
+				lg:w-auto
+				lg:h-auto
+				lg:static
+				max-lg:absolute
+				max-lg:flex-start
+				max-lg:w-[110vw]
+				max-lg:translate-x-[-100%]
+				max-lg:bg-black/[.75]
+				transition
+				duration-700
+				z-[999]
+			'
+			onClick={mobileDevice ? closeMenu : onNavClick}
 		>
 			<div
 				className='close-icon absolute w-64 top-5 left-10 hidden z-10'

@@ -1,6 +1,7 @@
 import React from "react"
 import Navbar from "./navbar"
-import PhotoGallery from "./photo-gallery/index"
+import PhotoGallery from "./top-block/photo-gallery"
+import ProductIntro from "./top-block/product-intro"
 import CartList from "./cart/components/CartList"
 
 const navList: string[] = [
@@ -33,48 +34,12 @@ const Layout = () => {
 					lg:w-11/12
 					lg:grid-cols-2
 					lg:gap-20
-					lg:mb-20
+					lg:mb-24
 					xl:gap-24
 					xl:w-10/12
 				">
-					<div>
-						<PhotoGallery />
-					</div>
-					<div className="w-11/12 mx-auto tracking-wider lg:pt-3 xl:pt-8 2xl:pt-16">
-					<h3 className="text-sm text-tritanomaly font-bold pb-5">SNEAKER COMPANY</h3>
-						<h2 className="text-2xl font-bold leading-tight sm:text-3xl 2xl:text-4xl">Fall Limited Edition Sneakers</h2>
-						<p className="
-							text-xs
-							text-gray-400
-							pt-4
-							md:text-sm
-							lg:text-base
-							xl:pt-6
-							2xl:pt-10
-						">
-							These low-profile sneakers are your perfect casual wear companion.
-							Featuring a durable rubber outer sole. they'll withstand everything the weather can offer.
-						</p>
-
-						<div className="grid grid-cols-2 lg:grid-cols-1 pt-10 pb-4 xl:pt-6 2xl:pt-10">
-							<div className="flex items-center font-bold ">
-								<h3 className="text-xl flex-start mr-4 lg:text-3xl">$125.00</h3>
-								<div className="text-xs text-tritanomaly bg-orange-100 / 2 rounded-lg px-3 py-1 lg:text-sm">50%</div>
-							</div>
-							<div className="
-								w-full
-								text-xs
-								text-gray-400
-								line-through
-								flex
-								items-center
-								justify-end
-								lg:text-sm
-								lg:justify-start
-								lg:pt-4
-							">$250.00</div>
-						</div>
-					</div>
+					<PhotoGallery />
+					<ProductIntro />
 				</div>
 				{
 					navList.map((item, i) => {

@@ -34,6 +34,7 @@ const PhotoGallery = () => {
     <>
       <div className="photo-album">
         <div className="photo-album__main-image flex-center mx-auto cursor-pointer relative">
+          {/* main image */}
           <img
             src={active !== -1 ? advancedSlides[active]?.src : advancedSlides[0]?.src}
             className="
@@ -44,10 +45,12 @@ const PhotoGallery = () => {
               sm:max-h-[450px]
               md:mb-8
               lg:rounded-xl
-              2xl:max-h-[55vh]
+              lg:h-[60vh]
+              2xl:max-h-[50vh]
             "
             onClick={() => openLightbox()}
           />
+
           {/* pre */}
           <div className="
             block
@@ -107,6 +110,8 @@ const PhotoGallery = () => {
             </span>
           </div>
         </div>
+
+        {/* images */}
         <div className="
           photo-album__images
           grid-cols-4

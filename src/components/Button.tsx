@@ -4,16 +4,16 @@ import { ButtonType, ButtonSize } from './theme'
 interface BaseButton extends PropsWithChildren {
   size: string,
   type: string
-  action?: () => any
+  onClick?: () => any
 }
 
 const Button = ({...props}: BaseButton) => {
-  const { size, type, children, action } = props
+  const { size, type, children, onClick } = props
   const classNames = `d-inline-block user-select-none active-scale ${ButtonType[type]} ${ButtonSize[size]}`;
   return (
     <button
       className={classNames}
-      onClick={action}
+      onClick={onClick}
     >{children}</button>
   )
 }

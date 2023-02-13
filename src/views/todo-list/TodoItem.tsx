@@ -56,13 +56,13 @@ const TodoItem = ({todos, editingTodo, onEditTodo, onDeleteTodo }: TodoItemProps
                   <Button
                     size='md'
                     type='primary'
-                    action={() => onEditTodo(todoItem.id as number)}
+                    onClick={() => onEditTodo(todoItem.id as number)}
                   >Edit</Button>
 
                   <Button
                     size='md'
                     type='delete'
-                    action={() => onDeleteTodo(todoItem.id as number)}
+                    onClick={() => onDeleteTodo(todoItem.id as number)}
                   >Delete</Button>
                 </div>
               </div>

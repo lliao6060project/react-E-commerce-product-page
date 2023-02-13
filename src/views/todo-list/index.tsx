@@ -97,14 +97,14 @@ const TodoList = () => {
 					<Button
 						size='md'
 						type='basic'
-						action={() => editTodo ? handleUpdateTodo() : handleAddTodo()}
+						onClick={() => editTodo ? handleUpdateTodo() : handleAddTodo()}
 					>{editTodo ? '確認修改' : '新增'}</Button>
 				</div>
 				<div className={`${editTodo ? 'block': 'hidden'}`}>
 					<Button
 						size='md'
 						type='secondary'
-						action={() => handleCancelEditTodo()}
+						onClick={() => handleCancelEditTodo()}
 					>取消</Button>
 				</div>
       </div>
