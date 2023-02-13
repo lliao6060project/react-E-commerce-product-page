@@ -11,7 +11,7 @@ const navList: string[] = [
 	'Contact'
 ]
 
-const layoutOuterSize = `w-full md:w-10/12 lg:w-10/12`
+const layoutOuterSize = `w-full lg:w-10/12`
 
 
 const Layout = () => {
@@ -25,24 +25,55 @@ const Layout = () => {
 				{/* <div className="block xl:hidden">
 					<CartList />
 				</div> */}
-				<div className="w-full lg:w-10/12 mx-auto grid grid-cols-1 lg:grid-cols-2 pb-20 gap-20 xl:gap-5 2xl:gap:20">
-					<PhotoGallery />
-					<div className="tracking-wider w-11/12 lg:w-10/12 mx-auto">
-						<h3 className="text-tritanomaly font-bold text-base pb-5">SNEAKER COMPANY</h3>
-						<h2 className="lg:text-3xl xl:text-4xl font-bold leading-tight">Fall Limited Edition Sneakers</h2>
-						<p className="text-gray-400 pt-10">
+				<div className="
+					w-full
+					mx-auto
+					grid
+					grid-cols-1
+					lg:w-11/12
+					lg:grid-cols-2
+					lg:gap-20
+					lg:mb-20
+					xl:gap-24
+					xl:w-10/12
+				">
+					<div>
+						<PhotoGallery />
+					</div>
+					<div className="w-11/12 mx-auto tracking-wider lg:pt-3 xl:pt-8 2xl:pt-16">
+					<h3 className="text-sm text-tritanomaly font-bold pb-5">SNEAKER COMPANY</h3>
+						<h2 className="text-2xl font-bold leading-tight sm:text-3xl 2xl:text-4xl">Fall Limited Edition Sneakers</h2>
+						<p className="
+							text-xs
+							text-gray-400
+							pt-4
+							md:text-sm
+							lg:text-base
+							xl:pt-6
+							2xl:pt-10
+						">
 							These low-profile sneakers are your perfect casual wear companion.
 							Featuring a durable rubber outer sole. they'll withstand everything the weather can offer.
 						</p>
 
-						<div className="w-5/12 pt-10">
-							<div className="flex items-center font-bold pb-4">
-								<h3 className="text-3xl flex-start mr-4">$125.00</h3>
-								<div className="text-sm text-tritanomaly bg-orange-100 / 2 rounded-lg px-3 py-1">50%</div>
+						<div className="grid grid-cols-2 lg:grid-cols-1 pt-10 pb-4 xl:pt-6 2xl:pt-10">
+							<div className="flex items-center font-bold ">
+								<h3 className="text-xl flex-start mr-4 lg:text-3xl">$125.00</h3>
+								<div className="text-xs text-tritanomaly bg-orange-100 / 2 rounded-lg px-3 py-1 lg:text-sm">50%</div>
 							</div>
-							<p className="text-gray-400 line-through">$250.00</p>
+							<div className="
+								w-full
+								text-xs
+								text-gray-400
+								line-through
+								flex
+								items-center
+								justify-end
+								lg:text-sm
+								lg:justify-start
+								lg:pt-4
+							">$250.00</div>
 						</div>
-
 					</div>
 				</div>
 				{
@@ -51,7 +82,7 @@ const Layout = () => {
 							<React.Fragment key={`${item}-${i}`}>
 								<section
 									id={`block-${item}`}
-									className="w-11/12 lg:w-10/12 mx-auto min-h-screen text-justify py-3 scroll-mt-[120px]"
+									className="w-11/12 xl:w-10/12 mx-auto min-h-screen text-justify py-3 scroll-mt-[120px]"
 								>
 									<h3 className="text-2xl bold py-4 font-bold">{item} Block</h3>
 									<p className="leading-relaxed">

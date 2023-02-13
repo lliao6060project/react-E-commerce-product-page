@@ -1,25 +1,19 @@
 import { useState, } from "react";
 import { advancedSlides } from "@/components/lightbox/slides";
 import Lightbox from '@/components/Lightbox'
-import { mobileDevice } from '@/composable/useUtils'
 
 const PhotoGallery = () => {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState(-1);
 
-  // only used in pc
   const openLightbox = () => {
-    if(!mobileDevice) {
-      setOpen(true)
-      setActive(active !== -1 ? active : 0)
-    }
+    setOpen(true)
+    setActive(active !== -1 ? active : 0)
   }
 
   const onThumbnailsClick = (index: number) => {
-    if(!mobileDevice) {
-      setActive(index)
-      setOpen(true)
-    }
+    setActive(index)
+    setOpen(true)
   }
 
   // mobile
@@ -39,13 +33,20 @@ const PhotoGallery = () => {
   return (
     <>
       <div className="photo-album">
-        <div
-          className="photo-album__main-image flex-center cursor-pointer relative xl:max-w-xl mx-auto"
-          onClick={() => openLightbox()}
-        >
+        <div className="photo-album__main-image flex-center mx-auto cursor-pointer relative">
           <img
             src={active !== -1 ? advancedSlides[active]?.src : advancedSlides[0]?.src}
-            className="object-contain w-full md:w-96 mb-5 md:mb-8 lg:rounded-xl xl:object-cover"
+            className="
+              object-contain
+              w-full
+              mb-5
+              sm:object-cover
+              sm:max-h-[450px]
+              md:mb-8
+              lg:rounded-xl
+              2xl:max-h-[55vh]
+            "
+            onClick={() => openLightbox()}
           />
           {/* pre */}
           <div className="
@@ -114,7 +115,6 @@ const PhotoGallery = () => {
           hidden
           lg:grid
           xl:mx-auto
-          xl:max-w-xl
         ">
           {
             advancedSlides.map((img: { src: string | undefined; }, index: number) => {

@@ -47,15 +47,15 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
         <div className="
           w-11/12
           xl:w-2/3
-          absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] 2xl:-translate-y-[55%]
+          absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]
           py-12
         ">
           <div className="
             relative
             mx-auto
-            w-11/12
+            sm:w-3/5
+            md:w-4/5
             h-80
-            md:max-w-lg
             md:h-[45vh]
             lg:max-w-2xl
             xl:h-[60vh]
@@ -79,7 +79,7 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
               absolute
               top-[50%]
               -translate-y-[50%]
-              -left-5
+              -left-3
               lg:-left-8
               bg-white
               rounded-full
@@ -106,7 +106,7 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
               absolute
               top-[50%]
               -translate-y-[50%]
-              -right-5
+              -right-3
               lg:-right-8
               bg-white
               rounded-full
@@ -150,12 +150,12 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
             mt-5
             gap-5
             px-4
-            md:px-0
             max-w-xs
-            md:max-w-md
-            lg:max-w-xl
-            xl:gap-3
-            xl:mt-12
+            sm:max-w-sm
+            md:px-0
+            lg:max-w-lg
+            xl:max-w-xl
+            lg:mt-8
           "
           >
             {
