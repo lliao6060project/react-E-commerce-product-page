@@ -1,19 +1,22 @@
+
+import type { PropsWithChildren } from "react"
+import { useSelector } from "react-redux";
 import Counter from "@/components/Counter"
-import { useSelector, useDispatch } from "react-redux";
 
-const ProductIntro = () => {
-  const { value:count, min, max } = useSelector((state: Record<string, number>) => state)
-  const dispatch = useDispatch()
+interface ProductIntroProps extends PropsWithChildren {
+  product: Record<string, string | number>
+  onAddToCartClick: () => void
+}
 
-  const addToCart = () => {
-    dispatch({type: 'INCREMENT'})
-  }
+
+const ProductIntro = ({product, onAddToCartClick}: ProductIntroProps) => {
+  const { count, min, max } = useSelector((state: Record<string, number>) => state)
 
   return (
     <>
       <div className="w-11/12 mx-auto tracking-wider lg:pt-3 xl:pt-8 2xl:pt-20">
-        <h3 className="text-sm text-tritanomaly font-bold pb-5">SNEAKER COMPANY</h3>
-        <h2 className="text-2xl font-bold leading-tight sm:text-3xl 2xl:text-5xl">Fall Limited Edition Sneakers</h2>
+        <h3 className="text-sm text-tritanomaly font-bold pb-5">{product.subTitle}</h3>
+        <h2 className="text-2xl font-bold leading-tight sm:text-3xl 2xl:text-5xl">{product.title}</h2>
         <p className="
           text-xs
           text-gray-400
@@ -22,14 +25,13 @@ const ProductIntro = () => {
           lg:text-base
           2xl:pt-10
         ">
-          These low-profile sneakers are your perfect casual wear companion.
-          Featuring a durable rubber outer sole. they'll withstand everything the weather can offer.
+          {product.desc}
         </p>
 
         <div className="grid grid-cols-2 lg:grid-cols-1 pt-10 pb-4 xl:pt-6 2xl:pt-10">
           <div className="flex items-center font-bold ">
-            <h3 className="text-2xl flex-start mr-4 lg:text-3xl">$125.00</h3>
-            <div className="text-xs text-tritanomaly bg-orange-100 / 2 rounded-lg px-3 py-1 lg:text-sm">50%</div>
+            <h3 className="text-2xl flex-start mr-4 lg:text-3xl">${(product.price as number) * ((product.discount as number) / 100)}.00</h3>
+            <div className="text-xs text-tritanomaly bg-orange-100 / 2 rounded-lg px-3 py-1 lg:text-sm">{product.discount}%</div>
           </div>
           <div className="
             w-full
@@ -42,7 +44,7 @@ const ProductIntro = () => {
             lg:text-sm
             lg:justify-start
             lg:pt-4
-          ">$250.00</div>
+          ">${product.price}.00</div>
         </div>
 
         <div className="grid grid-cols-1 gap-5 my-3 lg:h-14 lg:grid-cols-5 xl:my-10 xl:mb-0">
@@ -60,7 +62,7 @@ const ProductIntro = () => {
             lg:col-span-3
             ${count >= max ? 'cursor-not-allowed' : 'cursor-pointer'}
           `}
-          onClick={() => addToCart()}
+          onClick={onAddToCartClick}
           >
             <div className="text-lg text-white flex justify-around">
               <span className="flex items-center justify-end">

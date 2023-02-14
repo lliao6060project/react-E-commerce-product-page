@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { Provider } from 'react-redux';
-import store from '@/store/store';
+import cartStore from '@/store/cart/store';
 
 import TodoList from './views/todo-list'
 import Ecommerce from './views/e-commerce'
@@ -11,7 +11,7 @@ const App = () => {
 		document.body.classList.add('pt-[120px]', 'lg:pt-48');
 	}, [])
   return (
-		<Provider store={store}>
+		<Provider store={cartStore}>
 			{/* Router */}
 			<div className='app w-full'>
 				<Ecommerce />

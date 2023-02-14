@@ -1,8 +1,17 @@
+import type { PropsWithChildren } from 'react'
 import React from "react"
+import { connect } from "react-redux";
+import { removeItem, addToCart } from '@/store/cart/actions'
+
 import Navbar from "./navbar"
-import PhotoGallery from "./top-block/photo-gallery"
-import ProductIntro from "./top-block/product-intro"
-import CartList from "./cart/components/CartList"
+import PhotoGallery from "./top-block/PhotoGallery"
+import ProductIntro from "./top-block/ProductIntro"
+
+interface ECommerceProps extends PropsWithChildren {
+	count: number
+	removeItem: (num: number) => void
+	addToCart: (product: Record<string, number | string>) => void
+}
 
 const navList: string[] = [
 	'Collections',
@@ -14,18 +23,29 @@ const navList: string[] = [
 
 const layoutOuterSize = `w-full lg:w-10/12`
 
+const product = {
+	subTitle: 'SNEAKER COMPANY',
+	title: 'Fall Limited Edition Sneakers',
+	desc: `
+		These low-profile sneakers are your perfect casual wear companion.
+		Featuring a durable rubber outer sole. they'll withstand everything the weather can offer.
+	`,
+	price: 250,
+	discount: 50,
+}
 
-const Layout = () => {
+
+const ECommerce = ({...props}: ECommerceProps) => {
+	const { count, removeItem, addToCart } = props
 	return (
 		<div className="layout mx-auto h-screen flex flex-col">
 			<Navbar
+				count={count}
 				navList={navList}
 				outerSize={layoutOuterSize}
+				removeItem={removeItem}
 			/>
 			<main className={`${layoutOuterSize} flex-auto mx-auto`}>
-				{/* <div className="block xl:hidden">
-					<CartList />
-				</div> */}
 				<div className="
 					w-full
 					mx-auto
@@ -39,7 +59,10 @@ const Layout = () => {
 					xl:w-10/12
 				">
 					<PhotoGallery />
-					<ProductIntro />
+					<ProductIntro
+						product={product}
+						onAddToCartClick={() => addToCart(product)}
+					/>
 				</div>
 				{
 					navList.map((item, i) => {
@@ -67,4 +90,16 @@ const Layout = () => {
 	)
 }
 
-export default Layout
+const mapStateToProps = (state: Record<string, number>) => ({
+  count: state.cartCount
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+  removeItem: (num: number) => dispatch(removeItem(num)),
+	addToCart: (product: Record<string, number | string>) => dispatch(addToCart(product))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ECommerce);
