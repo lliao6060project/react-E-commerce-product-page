@@ -29,7 +29,7 @@ const Input = (
         type={type}
         value={value}
         name={name}
-        className="border py-2 px-3 rounded-lg outline-none shadow-md"
+        className='border py-2 px-3 rounded-lg outline-none shadow-md'
         placeholder={placeholder}
         onChange={onChange}
       />

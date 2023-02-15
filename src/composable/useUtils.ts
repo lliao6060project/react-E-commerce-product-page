@@ -1,4 +1,4 @@
-export const mobileDevice = window.matchMedia("only screen and (max-width: 992px)").matches;
+export const mobileDevice = window.matchMedia('only screen and (max-width: 992px)').matches;
 
 export const isMobileDevice = () => {
   const mobileDevice = ['Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'Windows Phone']

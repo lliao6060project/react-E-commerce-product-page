@@ -1,4 +1,4 @@
-import products from "./products";
+import products from './products';
 
 export const slides = products.map(({ src, key, width, height, images }: any) => ({
   src,

@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
-import { forwardRef } from "react"
+import { forwardRef } from 'react'
 import { Link } from 'react-scroll'
-import { mobileDevice } from "@/composable/useUtils"
+import { mobileDevice } from '@/composable/useUtils'
 
 
 interface NavItemProps extends PropsWithChildren {
@@ -54,10 +54,10 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 				className='close-icon absolute w-64 top-5 left-10 hidden z-10'
 				onClick={closeMenu}
 			>
-				<svg width="14" height="15" xmlns="http://www.w3.org/2000/svg"><path d="m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z" fill="#69707D" className="evenodd"/></svg>
+				<svg width='14' height='15' xmlns='http://www.w3.org/2000/svg'><path d='m11.596.782 2.122 2.122L9.12 7.499l4.597 4.597-2.122 2.122L7 9.62l-4.595 4.597-2.122-2.122L4.878 7.5.282 2.904 2.404.782l4.595 4.596L11.596.782Z' fill='#69707D' className='evenodd'/></svg>
 			</div>
 			<ul
-				className="
+				className='
 					px-10
 					text-xl
 					text-black
@@ -76,7 +76,7 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 					lg:w-full
 					lg:h-full
 					max-lg:pt-16
-			">
+			'>
 				{
 					navList.map((navItem, i) => {
 						return (
@@ -92,12 +92,12 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 								}
 							>
 								<Link
-									activeClass="active font-bold text-black border-b-4 border-tritanomaly lg:h-[120px]"
+									activeClass='active font-bold text-black border-b-4 border-tritanomaly lg:h-[120px]'
 									to={`block-${navItem}`}
 									offset={-120}
 									spy={true}
 									duration={500}
-									className="w-full h-full lg:flex-center"
+									className='w-full h-full lg:flex-center'
 									onClick={mobileDevice ? closeMenu : onNavClick}
 								>
 									{navItem}

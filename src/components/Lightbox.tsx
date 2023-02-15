@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react'
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface LightboxProps extends PropsWithChildren {
   open: Boolean
@@ -44,13 +44,13 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
   return (
     <>
       <div className={`${open ? 'fixed w-screen top-0 left-0 right-0 bottom-0 bg-black/[.75] z-[999]' : 'hidden'}`}>
-        <div className="
+        <div className='
           w-11/12
           xl:w-2/3
           absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]
           py-12
-        ">
-          <div className="
+        '>
+          <div className='
             relative
             mx-auto
             sm:w-3/5
@@ -59,23 +59,23 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
             md:h-[45vh]
             lg:max-w-2xl
             xl:h-[60vh]
-          "
+          '
           >
             {/* close icon */}
             <div
-              className="absolute -top-10 -right-2 cursor-pointer group"
+              className='absolute -top-10 -right-2 cursor-pointer group'
               onClick={onClose}
             >
-              <span className="block group-hover:hidden">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtUlEQVR4nO2WSwqEMBBEvYSi9z9OXI0Lj/NkUJDJwv6kBmHGgqy0eN1tUqbrHv2lgAGYjzU0+IvbD/TAi1MrMAWgOT97pbUWT+VHp+93a5Us2IRfQN3gvhoV1tgcntEER+EyaAQuhzq/22I8Cx/DDxldaTttgOugAbgeGgC7E+4bo9bAyW2uNjh3HCcc4ZCJ10tFEkkGJxGDEjg3/hbnKNQBL9mrizuRmvzslZfQZU3of/Qb2gDIApP3EFwGCQAAAABJRU5ErkJggg==" />
+              <span className='block group-hover:hidden'>
+                <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAtUlEQVR4nO2WSwqEMBBEvYSi9z9OXI0Lj/NkUJDJwv6kBmHGgqy0eN1tUqbrHv2lgAGYjzU0+IvbD/TAi1MrMAWgOT97pbUWT+VHp+93a5Us2IRfQN3gvhoV1tgcntEER+EyaAQuhzq/22I8Cx/DDxldaTttgOugAbgeGgC7E+4bo9bAyW2uNjh3HCcc4ZCJ10tFEkkGJxGDEjg3/hbnKNQBL9mrizuRmvzslZfQZU3of/Qb2gDIApP3EFwGCQAAAABJRU5ErkJggg==' />
               </span>
-              <span className="hidden group-hover:block">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAxElEQVR4nO2WwQrCMBBE5ycs+pEBcf3LeNKDnzOi6SUoye5mIVA7kEvb4WW3zXSBXX8pChYKbutaBvxZ7WfCgYI7BVzXk2ec1FCvn2WnrNYFD83OP5WWZ2u/IPvACngDqgSnr1ax17au54pjF2yFh0Et8HCo6r29r7fuOY5hpU5VsZUOwOOgBng8VA02JFx8q6Pg9Hxco3DOOE5UhIMnXpuyJFIYnI4YDIFz2m9RZg0C6cfoYkikIT/LsJZNw1qgf9c29AJVV7HHB+D8tAAAAABJRU5ErkJggg==" />
+              <span className='hidden group-hover:block'>
+                <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAxElEQVR4nO2WwQrCMBBE5ycs+pEBcf3LeNKDnzOi6SUoye5mIVA7kEvb4WW3zXSBXX8pChYKbutaBvxZ7WfCgYI7BVzXk2ec1FCvn2WnrNYFD83OP5WWZ2u/IPvACngDqgSnr1ax17au54pjF2yFh0Et8HCo6r29r7fuOY5hpU5VsZUOwOOgBng8VA02JFx8q6Pg9Hxco3DOOE5UhIMnXpuyJFIYnI4YDIFz2m9RZg0C6cfoYkikIT/LsJZNw1qgf9c29AJVV7HHB+D8tAAAAABJRU5ErkJggg==' />
               </span>
             </div>
 
             {/* pre */}
-            <div className="
+            <div className='
               absolute
               top-[50%]
               -translate-y-[50%]
@@ -88,21 +88,21 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
               lg:w-16
               lg:h-16
               cursor-pointer group
-              "
+              '
               onClick={() => onArrowClick({action: 'prev'})}
             >
-              <span className="align-center">
-                <i className="block group-hover:hidden">
-                  <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#1D2026" strokeWidth="3" fill="none" className="evenodd" /></svg>
+              <span className='align-center'>
+                <i className='block group-hover:hidden'>
+                  <svg width='12' height='18' xmlns='http://www.w3.org/2000/svg'><path d='M11 1 3 9l8 8' stroke='#1D2026' strokeWidth='3' fill='none' className='evenodd' /></svg>
                 </i>
-                <i className="hidden group-hover:block">
-                  <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#ff7300" strokeWidth="3" fill="none" className="evenodd" /></svg>
+                <i className='hidden group-hover:block'>
+                  <svg width='12' height='18' xmlns='http://www.w3.org/2000/svg'><path d='M11 1 3 9l8 8' stroke='#ff7300' strokeWidth='3' fill='none' className='evenodd' /></svg>
                 </i>
               </span>
             </div>
 
             {/* next */}
-            <div className="
+            <div className='
               absolute
               top-[50%]
               -translate-y-[50%]
@@ -116,15 +116,15 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
               lg:h-16
               cursor-pointer
               group
-            "
+            '
               onClick={() => onArrowClick({action: 'next'})}
             >
-              <span className="align-center">
-                <i className="block group-hover:hidden">
-                  <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" strokeWidth="3" fill="none" className="evenodd"/></svg>
+              <span className='align-center'>
+                <i className='block group-hover:hidden'>
+                  <svg width='13' height='18' xmlns='http://www.w3.org/2000/svg'><path d='m2 1 8 8-8 8' stroke='#1D2026' strokeWidth='3' fill='none' className='evenodd'/></svg>
                 </i>
-                <i className="hidden group-hover:block">
-                  <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#ff7300" strokeWidth="3" fill="none" className="evenodd"/></svg>
+                <i className='hidden group-hover:block'>
+                  <svg width='13' height='18' xmlns='http://www.w3.org/2000/svg'><path d='m2 1 8 8-8 8' stroke='#ff7300' strokeWidth='3' fill='none' className='evenodd'/></svg>
                 </i>
               </span>
             </div>
@@ -143,7 +143,7 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
           </div>
 
           {/* thumbnails */}
-          <div className="
+          <div className='
             grid
             grid-cols-4
             mx-auto
@@ -156,7 +156,7 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
             lg:max-w-lg
             xl:max-w-xl
             lg:mt-8
-          "
+          '
           >
             {
               slides.map((item, i) => {
@@ -176,7 +176,7 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
                     `}
                     onClick={() => setCurrent(i)}
                   >
-                    <img src={item.src} className="block object-cover"/>
+                    <img src={item.src} className='block object-cover'/>
                   </div>
                 )
               })

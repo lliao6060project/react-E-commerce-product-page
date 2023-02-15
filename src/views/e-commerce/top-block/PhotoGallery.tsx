@@ -1,5 +1,5 @@
-import { useState, } from "react";
-import { advancedSlides } from "@/components/lightbox/slides";
+import { useState, } from 'react';
+import { advancedSlides } from '@/components/lightbox/slides';
 import Lightbox from '@/components/Lightbox'
 
 const PhotoGallery = () => {
@@ -32,27 +32,28 @@ const PhotoGallery = () => {
 
   return (
     <>
-      <div className="photo-album">
-        <div className="photo-album__main-image flex-center mx-auto cursor-pointer relative">
+      <div className='photo-album'>
+        <div className='photo-album__main-image flex-center mx-auto cursor-pointer relative'>
           {/* main image */}
           <img
             src={active !== -1 ? advancedSlides[active]?.src : advancedSlides[0]?.src}
-            className="
+            className='
               object-contain
               w-full
               mb-5
               sm:object-cover
-              sm:max-h-[450px]
               md:mb-8
+              md:h-[60vmax]
               lg:rounded-xl
-              lg:h-[60vh]
-              2xl:max-h-[50vh]
-            "
+              lg:h-[30vmax]
+              xl:h-[50vmin]
+              2xl:h-[25vmax]
+            '
             onClick={() => openLightbox()}
           />
 
           {/* pre */}
-          <div className="
+          <div className='
             block
             lg:hidden
             absolute
@@ -67,21 +68,21 @@ const PhotoGallery = () => {
             lg:w-16
             lg:h-16
             cursor-pointer group
-            "
+            '
             onClick={() => onArrowClick({action: 'prev'})}
           >
-            <span className="align-center">
-              <i className="block group-hover:hidden">
-                <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#1D2026" strokeWidth="3" fill="none" className="evenodd" /></svg>
+            <span className='align-center'>
+              <i className='block group-hover:hidden'>
+                <svg width='12' height='18' xmlns='http://www.w3.org/2000/svg'><path d='M11 1 3 9l8 8' stroke='#1D2026' strokeWidth='3' fill='none' className='evenodd' /></svg>
               </i>
-              <i className="hidden group-hover:block">
-                <svg width="12" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M11 1 3 9l8 8" stroke="#ff7300" strokeWidth="3" fill="none" className="evenodd" /></svg>
+              <i className='hidden group-hover:block'>
+                <svg width='12' height='18' xmlns='http://www.w3.org/2000/svg'><path d='M11 1 3 9l8 8' stroke='#ff7300' strokeWidth='3' fill='none' className='evenodd' /></svg>
               </i>
             </span>
           </div>
 
           {/* next */}
-          <div className="
+          <div className='
             block
             lg:hidden
             absolute
@@ -97,22 +98,22 @@ const PhotoGallery = () => {
             lg:h-16
             cursor-pointer
             group
-          "
+          '
             onClick={() => onArrowClick({action: 'next'})}
           >
-            <span className="align-center">
-              <i className="block group-hover:hidden">
-                <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#1D2026" strokeWidth="3" fill="none" className="evenodd"/></svg>
+            <span className='align-center'>
+              <i className='block group-hover:hidden'>
+                <svg width='13' height='18' xmlns='http://www.w3.org/2000/svg'><path d='m2 1 8 8-8 8' stroke='#1D2026' strokeWidth='3' fill='none' className='evenodd'/></svg>
               </i>
-              <i className="hidden group-hover:block">
-                <svg width="13" height="18" xmlns="http://www.w3.org/2000/svg"><path d="m2 1 8 8-8 8" stroke="#ff7300" strokeWidth="3" fill="none" className="evenodd"/></svg>
+              <i className='hidden group-hover:block'>
+                <svg width='13' height='18' xmlns='http://www.w3.org/2000/svg'><path d='m2 1 8 8-8 8' stroke='#ff7300' strokeWidth='3' fill='none' className='evenodd'/></svg>
               </i>
             </span>
           </div>
         </div>
 
         {/* images */}
-        <div className="
+        <div className='
           photo-album__images
           grid-cols-4
           gap-6
@@ -120,7 +121,7 @@ const PhotoGallery = () => {
           hidden
           lg:grid
           xl:mx-auto
-        ">
+        '>
           {
             advancedSlides.map((img: { src: string | undefined; }, index: number) => {
               return (
@@ -132,12 +133,12 @@ const PhotoGallery = () => {
                     rounded-xl overflow-hidden
                     cursor-pointer
                     hover:opacity-70
-                    ${index === active || active === -1 && index === 0 ? "border-4 border-[#ff7300]" : ''}
+                    ${index === active || active === -1 && index === 0 ? 'border-4 border-[#ff7300]' : ''}
                   `}
                 >
                   <img
                     src={img.src}
-                    className="w-full h-full object-contain md:object-cover"
+                    className='w-full h-full object-contain md:object-cover'
                   />
                 </div>
               )

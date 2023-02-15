@@ -1,4 +1,4 @@
-import { getImageUrl } from "@/composable/useImageUrl"
+import { getImageUrl } from '@/composable/useImageUrl'
 
 const breakpoints = [4320, 2160, 1080, 640, 384, 256, 128];
 
