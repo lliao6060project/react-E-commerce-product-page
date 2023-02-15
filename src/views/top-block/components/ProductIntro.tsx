@@ -5,11 +5,10 @@ import Counter from '@/components/Counter'
 interface ProductIntroProps extends PropsWithChildren {
   count: number
   product: Record<string, string | number>
-  onAddToCartClick: () => void
+  onaddProdToCartClick: () => void
 }
 
-
-const ProductIntro = ({onAddToCartClick, ...props}: ProductIntroProps) => {
+const ProductIntro = ({onaddProdToCartClick, ...props}: ProductIntroProps) => {
   const { count, product } = props
   return (
     <>
@@ -80,7 +79,7 @@ const ProductIntro = ({onAddToCartClick, ...props}: ProductIntroProps) => {
             lg:col-span-3
             ${count > 0 ? 'cursor-pointer' : 'cursor-not-allowed'}
           `}
-          onClick={onAddToCartClick}
+          onClick={onaddProdToCartClick}
           >
             <div className='text-lg text-white flex justify-around'>
               <span className='flex items-center justify-end'>

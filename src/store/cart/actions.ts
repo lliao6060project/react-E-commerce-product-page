@@ -2,7 +2,7 @@ import type { CartItem } from '@/common/types'
 import {
   INCREMENT,
   DECREASE,
-  ADD_TO_CART,
+  ADD_PROD_TO_CART,
   REMOVE_CART_ITEM
 } from './actionType';
 import { toast } from 'react-toastify';
@@ -23,18 +23,18 @@ export const decreaseAction = () => {
   }
 }
 
-export const addToCart = (payload: CartItem) => {
-  toast.success('加入購物車成功!', {
+export const addProdToCart = (payload: CartItem) => {
+  toast.success('add cart success!', {
     position: 'top-center',
   });
   return {
-    type: ADD_TO_CART,
+    type: ADD_PROD_TO_CART,
     payload,
   }
 }
 
 export const removeCartItem = (payload: number) => {
-  toast.warn('購物車已清空!', {
+  toast.warn('cart already clear!', {
     position: 'top-center',
   });
   return {

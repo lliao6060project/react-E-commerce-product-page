@@ -36,6 +36,7 @@ const NavItem = forwardRef<HTMLDivElement, NavItemProps>(({onNavClick, ...props}
 				h-screen
 				top-0
 				left-[-10%]
+				md:left-[-8%]
 				lg:w-auto
 				lg:h-auto
 				lg:static

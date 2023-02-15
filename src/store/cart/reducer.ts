@@ -35,7 +35,7 @@ const addReducer = (
           ? state.count
           : state.count - 1
       };
-    case 'ADD_TO_CART':
+    case 'ADD_PROD_TO_CART':
       const cartList = []
       cartList.push(action.payload)
       return {
