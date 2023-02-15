@@ -1,3 +1,4 @@
+import type { CartItem } from '@/common/types'
 import { PropsWithChildren, useEffect } from 'react'
 import { useRef } from 'react'
 
@@ -10,7 +11,7 @@ import { isMobileDevice } from '@/composable/useUtils'
 interface NavbarProps extends PropsWithChildren {
 	count: number
 	navList: string[]
-	cartItems: Partial<Record<string, string | number>[]> | unknown
+	cartItems: Partial<CartItem[]> | unknown
 	removeCartItem: (num: number) => void
 }
 
@@ -35,7 +36,7 @@ const Navbar = ({...props}: NavbarProps) => {
 	}
 
 	useEffect(() => {
-		if(!(cartItems as Record<string, string | number>[]).length) {
+		if(!(cartItems as CartItem[]).length) {
 			onCloseCartList()
 		} else {
 			onCartClick()

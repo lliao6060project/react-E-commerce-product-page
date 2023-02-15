@@ -1,3 +1,4 @@
+import type { CartState } from '@/common/types'
 import { PropsWithChildren } from 'react'
 import { connect } from 'react-redux';
 import { incrementAction, decreaseAction } from '@/store/cart/actions'
@@ -34,7 +35,7 @@ const Counter = ({...props}: CounterProps) => {
   )
 }
 
-const mapStateToProps = (state: Record<string, number>) => ({
+const mapStateToProps = (state: CartState) => ({
   count: state.count,
   min: state.min,
   max: state.max

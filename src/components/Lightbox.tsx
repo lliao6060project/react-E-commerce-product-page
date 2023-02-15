@@ -37,10 +37,6 @@ const Lightbox = ({onClose, open = false, ...props}: LightboxProps) => {
     setCurrent(active)
   }, [active])
 
-  useEffect(() => {
-    console.log('子組件渲染')
-  }, [])
-
   return (
     <>
       <div className={`${open ? 'fixed w-screen top-0 left-0 right-0 bottom-0 bg-black/[.75] z-[999]' : 'hidden'}`}>

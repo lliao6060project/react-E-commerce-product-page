@@ -1,14 +1,15 @@
 
 import type { PropsWithChildren } from 'react'
+import type { CartItem } from '@/common/types'
 import Counter from '@/components/Counter'
 
 interface ProductIntroProps extends PropsWithChildren {
   count: number
-  product: Record<string, string | number>
-  onaddProdToCartClick: () => void
+  product: CartItem
+  onAddProdToCartClick: () => void
 }
 
-const ProductIntro = ({onaddProdToCartClick, ...props}: ProductIntroProps) => {
+const ProductIntro = ({onAddProdToCartClick, ...props}: ProductIntroProps) => {
   const { count, product } = props
   return (
     <>
@@ -79,7 +80,7 @@ const ProductIntro = ({onaddProdToCartClick, ...props}: ProductIntroProps) => {
             lg:col-span-3
             ${count > 0 ? 'cursor-pointer' : 'cursor-not-allowed'}
           `}
-          onClick={onaddProdToCartClick}
+          onClick={onAddProdToCartClick}
           >
             <div className='text-lg text-white flex justify-around'>
               <span className='flex items-center justify-end'>

@@ -1,17 +1,19 @@
 import type { PropsWithChildren } from 'react'
+import type { CartItem, CartState } from '@/common/types'
 import { connect } from 'react-redux';
 import { removeCartItem, addProdToCart } from '@/store/cart/actions'
 
 import Navbar from './navbar'
 import TopBlock from './top-block';
 import ContentBlock from './content-block';
+import { toast } from 'react-toastify';
 
 interface ECommerceProps extends PropsWithChildren {
 	count: number
 	cartCount: number
-	cartItems: Partial<Record<string, string | number>[]> | unknown
+	cartItems: Partial<CartItem[]> | unknown
 	removeCartItem: (num: number) => void
-	addProdToCart: (product: Record<string, number | string>) => void
+	addProdToCart: (product: CartItem) => void
 }
 
 const navList: string[] = [
@@ -34,10 +36,11 @@ const product = {
 }
 
 const toCartProduct = (count: number) => {
+	const { title, price, discount } = product
 	return {
-		title: product.title,
-		price: (product.price * (product.discount / 100)),
-		totalPrice: (product.price * (product.discount / 100)) * count
+		title: title,
+		price: (price * (discount / 100)),
+		totalPrice: (price * (discount / 100)) * count
 	}
 }
 
@@ -63,11 +66,13 @@ const ECommerce = ({...props}: ECommerceProps) => {
 				<TopBlock
 					count={count}
 					product={product}
-					onaddProdToCartClick={() => count >= 1 ? addProdToCart(toCartProduct(count)) : ''}
+					onAddProdToCartClick={() => count >= 1 ? addProdToCart(toCartProduct(count)) : toast.error('count cannot be less than zero!', {
+						position: 'top-center',
+					})}
 				/>
 
 				<div className='w-11/12 mx-auto xl:w-10/12'>
-					<ContentBlock list={navList}/>
+					<ContentBlock list={navList} />
 				</div>
 			</main>
 
@@ -76,7 +81,8 @@ const ECommerce = ({...props}: ECommerceProps) => {
 	)
 }
 
-const mapStateToProps = (state: Record<string, number>) => ({
+// redux
+const mapStateToProps = (state: CartState) => ({
 	count: state.count,
   cartCount: state.cartCount,
 	cartItems: state.cartItems
@@ -84,7 +90,7 @@ const mapStateToProps = (state: Record<string, number>) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   removeCartItem: (num: number) => dispatch(removeCartItem(num)),
-	addProdToCart: (product: Record<string, number | string>) => dispatch(addProdToCart(product))
+	addProdToCart: (product: CartItem) => dispatch(addProdToCart(product))
 });
 
 export default connect(

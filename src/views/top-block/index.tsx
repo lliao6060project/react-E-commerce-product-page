@@ -1,15 +1,16 @@
 import type { PropsWithChildren } from 'react'
+import type { CartItem } from '@/common/types'
 
 import PhotoGallery from './components/PhotoGallery'
 import ProductIntro from './components/ProductIntro'
 
 interface TopBlockProps extends PropsWithChildren {
   count: number
-  product: Record<string, string | number>
-  onaddProdToCartClick: () => void
+  product: CartItem
+  onAddProdToCartClick: () => void
 }
 
-const TopBlock = ({count, product, onaddProdToCartClick}: TopBlockProps) => {
+const TopBlock = ({count, product, onAddProdToCartClick}: TopBlockProps) => {
   return (
     <div className='
       w-full
@@ -27,7 +28,7 @@ const TopBlock = ({count, product, onaddProdToCartClick}: TopBlockProps) => {
       <ProductIntro
         count={count}
         product={product}
-        onaddProdToCartClick={onaddProdToCartClick}
+        onAddProdToCartClick={onAddProdToCartClick}
       />
     </div>
   )

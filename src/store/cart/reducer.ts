@@ -1,14 +1,7 @@
-import type { CartItem } from '@/common/types'
+import type { CartState } from '@/common/types'
 
-interface State {
-  count: number
-  cartCount: number
-  min: number
-  max: number
-  cartItems: CartItem[]
-}
 
-const initialState: State = {
+const initialState: CartState = {
   count: 0,
   cartCount: 0,
   min: 1,

@@ -42,11 +42,13 @@ const BackToTop = forwardRef<HTMLDivElement, any>(({...props}, ref) => {
         text-white
         border-2
         border-slate-100
-        p-4
+        p-3
         drop-shadow-lg
         right-3
+        bottom-6
+        xl:bottom-16
         xl:right-16
-        bottom-16
+        xl:p-4
       `}
       onClick={() => scrollToTop()}
     >

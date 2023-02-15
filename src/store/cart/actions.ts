@@ -24,9 +24,9 @@ export const decreaseAction = () => {
 }
 
 export const addProdToCart = (payload: CartItem) => {
-  toast.success('add cart success!', {
-    position: 'top-center',
-  });
+  // toast.success('add cart success!', {
+  //   position: 'top-center',
+  // });
   return {
     type: ADD_PROD_TO_CART,
     payload,
@@ -34,7 +34,7 @@ export const addProdToCart = (payload: CartItem) => {
 }
 
 export const removeCartItem = (payload: number) => {
-  toast.warn('cart already clear!', {
+  toast.success('cart already clear!', {
     position: 'top-center',
   });
   return {
