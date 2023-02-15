@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from 'react'
 import type { CartItem, CartState } from '@/common/types'
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { removeCartItem, addProdToCart } from '@/store/cart/actions'
 
@@ -7,6 +8,8 @@ import Navbar from './navbar'
 import TopBlock from './top-block';
 import ContentBlock from './content-block';
 import { toast } from 'react-toastify';
+
+import useProductDetail from '@/hooks/useProductDetail';
 
 interface ECommerceProps extends PropsWithChildren {
 	count: number
@@ -52,6 +55,12 @@ const ECommerce = ({...props}: ECommerceProps) => {
 		removeCartItem,
 		addProdToCart
 	} = props
+
+	const [detail, { loading, fetchProductDetail }] = useProductDetail();
+
+	useEffect(() => {
+		fetchProductDetail();
+	}, []);
 
 	return (
 		<div className='layout mx-auto h-screen flex flex-col'>
