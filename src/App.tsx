@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import cartStore from '@/store/cart/store';
+import store from '@/store/store';
 import Ecommerce from './views/index'
 import BackToTop from './components/BackToTop';
 
@@ -31,7 +31,7 @@ const App = () => {
 		document.body.classList.add('pt-[120px]', 'lg:pt-48');
 	}, [])
   return (
-		<Provider store={cartStore}>
+		<Provider store={store}>
 			<Main />
 			<ToastContainer autoClose={2000} />
 			<BackToTop ref={backToTopRef}/>

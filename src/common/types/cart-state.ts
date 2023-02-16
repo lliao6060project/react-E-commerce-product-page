@@ -5,5 +5,6 @@ export interface CartState {
   cartCount: number
   min: number
   max: number
-  cartItems: CartItem[]
+  currentProduct: CartItem
+  cartList: CartItem[]
 }

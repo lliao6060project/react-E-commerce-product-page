@@ -12,11 +12,11 @@ interface NavbarProps extends PropsWithChildren {
 	count: number
 	navList: string[]
 	cartItems: Partial<CartItem[]> | unknown
-	removeCartItem: (num: number) => void
+	onRemoveCartItem: () => void
 }
 
-const Navbar = ({...props}: NavbarProps) => {
-	const { count, navList, cartItems, removeCartItem } = props
+const Navbar = ({onRemoveCartItem, ...props}: NavbarProps) => {
+	const { count, navList, cartItems } = props
 	const cartListRef = useRef(null)
 
 	const onCartClick = () => {
@@ -58,7 +58,7 @@ const Navbar = ({...props}: NavbarProps) => {
 						ref={cartListRef}
 						count={count}
 						items={cartItems}
-						onremoveCartItem={() => removeCartItem(count)}
+						onRemoveCartItem={onRemoveCartItem}
 						onClose={onCloseCartList}
 					/>
 				</div>
