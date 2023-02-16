@@ -6,7 +6,7 @@ import { getImageUrl } from '@/composable/useImageUrl'
 interface CartListProps extends PropsWithChildren {
   count: number
   items: Partial<CartItem[]> | unknown
-  onremoveCartItem: () => void
+  onRemoveCartItem: () => void
   onClose: () => void
 }
 
@@ -14,7 +14,7 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
   const {
     count,
     items,
-    onremoveCartItem,
+    onRemoveCartItem,
     onClose
   } = props
   return (
@@ -145,7 +145,7 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
                           xl:invisible
                           xl:group-hover/item:visible
                         '
-                        onClick={onremoveCartItem}
+                        onClick={onRemoveCartItem}
                       >
                         <span className='font-semibold transition group-hover/edit:text-gray-700'>
                           <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAg0lEQVR4nGNgIAw4GBgYdBkYGKwZGBhs0bA1VA6khmKgi8UCWzQMUkMxgPmEG4scD5LPSAL6RLieWKyPyxJbGuGBs4juwJZePrEd9hbBALF821GLbEeDjmE0MTCM5qOhlhhsaVWomlPBEnNiLFKggkUgMwgCRqhCcnwG0gPSCzIDBQAAdmVTlC+giPkAAAAASUVORK5CYII=' className='w-4'/>

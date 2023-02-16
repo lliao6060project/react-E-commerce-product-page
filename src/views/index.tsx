@@ -1,23 +1,12 @@
-import type { PropsWithChildren } from 'react'
-import type { CartItem, CartState } from '@/common/types'
+import type { AppDispatch, AppState } from '@/store/store'
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { removeCartItem, addProdToCart } from '@/store/cart/actions'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProduct, addProdToCart, removeCartItem } from '@/store/cart'
 
 import Navbar from './navbar'
 import TopBlock from './top-block';
 import ContentBlock from './content-block';
 import { toast } from 'react-toastify';
-
-import useProductDetail from '@/hooks/useProductDetail';
-
-interface ECommerceProps extends PropsWithChildren {
-	count: number
-	cartCount: number
-	cartItems: Partial<CartItem[]> | unknown
-	removeCartItem: (num: number) => void
-	addProdToCart: (product: CartItem) => void
-}
 
 const navList: string[] = [
 	'Collections',
@@ -47,35 +36,36 @@ const toCartProduct = (count: number) => {
 	}
 }
 
-const ECommerce = ({...props}: ECommerceProps) => {
+const ECommerce = ({...props}) => {
+	const dispatch: AppDispatch = useDispatch();
 	const {
 		count,
 		cartCount,
-		cartItems,
-		removeCartItem,
-		addProdToCart
-	} = props
+		currentProduct,
+		cartList
+	} = useSelector((state: AppState) => state.cartSlice)
 
-	const [detail, { loading, fetchProductDetail }] = useProductDetail();
-
-	useEffect(() => {
-		fetchProductDetail();
-	}, []);
+  useEffect(() => {
+    dispatch(fetchProduct());
+  }, [dispatch])
 
 	return (
 		<div className='layout mx-auto h-screen flex flex-col'>
 			<Navbar
 				count={cartCount}
 				navList={navList}
-				cartItems={cartItems}
-				removeCartItem={removeCartItem}
+				cartItems={cartList}
+				onRemoveCartItem={() => dispatch(removeCartItem())}
 			/>
 
 			<main className={`lg:w-10/12 flex-auto mx-auto`}>
 				<TopBlock
 					count={count}
 					product={product}
-					onAddProdToCartClick={() => count >= 1 ? addProdToCart(toCartProduct(count)) : toast.error('count cannot be less than zero!', {
+					onAddProdToCartClick={
+						() => count >= 1
+							? dispatch(addProdToCart(toCartProduct(count)))
+							: toast.error('count cannot be less than zero!', {
 						position: 'top-center',
 					})}
 				/>
@@ -90,19 +80,4 @@ const ECommerce = ({...props}: ECommerceProps) => {
 	)
 }
 
-// redux
-const mapStateToProps = (state: CartState) => ({
-	count: state.count,
-  cartCount: state.cartCount,
-	cartItems: state.cartItems
-});
-
-const mapDispatchToProps = (dispatch: any) => ({
-  removeCartItem: (num: number) => dispatch(removeCartItem(num)),
-	addProdToCart: (product: CartItem) => dispatch(addProdToCart(product))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ECommerce);
+export default ECommerce
