@@ -102,7 +102,7 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
                         hover:bg-slate-100
                         [&:not(:last-child)]:border-b
                       '
-                      key={`${cartItem.titie}-${i}`}
+                      key={`${cartItem.name}-${i}`}
                     >
                       <div className='flex gap-4'>
                         <div className='flex-shrink-0'>
@@ -117,11 +117,11 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
                               className='absolute inset-0 rounded-xl'
                               aria-hidden='true'
                             ></span>
-                            {cartItem.title}
+                            {cartItem.name}
                           </a>
                           <div className='text-slate-500'>
                             ${cartItem.price} x {count}
-                            <span className='font-bold text-black pl-3'>${ cartItem.totalPrice }</span>
+                            <span className='font-bold text-black pl-3'>${ cartItem.price * count }</span>
                           </div>
                         </div>
                       </div>

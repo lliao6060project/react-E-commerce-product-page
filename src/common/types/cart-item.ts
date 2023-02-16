@@ -1,3 +1,3 @@
 export type CartItem = {
-  [x: string]: string | number
+  [x: string]: string | number | any
 }

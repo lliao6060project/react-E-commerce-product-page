@@ -14,14 +14,14 @@ const ProductIntro = ({onAddProdToCartClick, ...props}: ProductIntroProps) => {
   return (
     <>
       <div className='w-11/12 mx-auto tracking-wider lg:pt-3 xl:pt-5 2xl:pt-20'>
-        <h3 className='text-sm text-tritanomaly font-bold pb-5'>{product.subTitle}</h3>
+        <h3 className='text-sm text-tritanomaly font-bold pb-5'>{product.company_name}</h3>
         <h2 className='
           text-2xl
           font-bold
           leading-tight
           sm:text-3xl
           2xl:text-5xl
-        '>{product.title}</h2>
+        '>{product.name}</h2>
         <p className='
           text-xs
           text-gray-400
@@ -40,7 +40,7 @@ const ProductIntro = ({onAddProdToCartClick, ...props}: ProductIntroProps) => {
               flex-start
               mr-4
               lg:text-3xl
-            '>${(product.price as number) * ((product.discount as number) / 100)}.00</h3>
+            '>${product.price?.discount}.00</h3>
             <div className='
               text-xs
               text-tritanomaly
@@ -49,7 +49,7 @@ const ProductIntro = ({onAddProdToCartClick, ...props}: ProductIntroProps) => {
               px-3
               py-1
               lg:text-sm
-            '>{product.discount}%</div>
+            '>{(product.discount as number) * 100}%</div>
           </div>
           <div className='
             w-full
@@ -62,7 +62,7 @@ const ProductIntro = ({onAddProdToCartClick, ...props}: ProductIntroProps) => {
             lg:text-sm
             lg:justify-start
             lg:pt-4
-          '>${product.price}.00</div>
+          '>${product.price?.original}.00</div>
         </div>
 
         <div className='grid grid-cols-1 gap-5 my-3 lg:h-14 lg:grid-cols-5 xl:my-10 xl:mb-0'>
