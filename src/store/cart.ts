@@ -4,14 +4,6 @@ import { toast } from 'react-toastify';
 import api from '@/services'
 
 
-// actions
-export const fetchProduct = createAsyncThunk("cart/fetchProduct", async (_, thunkAPI) => {
-  const { dispatch, getState } = thunkAPI
-  const res = await api.getCurrentProduct()
-  console.log(res)
-  return res
-});
-
 const initialState: CartState = {
   count: 0,
   cartCount: 0,
@@ -35,6 +27,9 @@ export const cartSlice = createSlice({
         ? state.count
         : state.count -= 1
     },
+    updateCurrentProduct: (state, { payload }): void => {
+      state.currentProduct = payload
+    },
     addProdToCart: (state, { payload }): void => {
       const cart_list = []
       state.cartCount += state.count
@@ -52,18 +47,29 @@ export const cartSlice = createSlice({
     }
   },
 
-  extraReducers: {
-    [(fetchProduct.fulfilled as any)]: (state, { payload }) => {
-      state.currentProduct = payload
-    },
-  }
+  // extraReducers: {
+  //   [(fetchProduct.fulfilled as any)]: (state, { payload }) => {
+  //     state.currentProduct = payload
+  //   },
+  // }
 });
 
 export const {
   increment,
   decrement,
+  updateCurrentProduct,
   addProdToCart,
   removeCartItem
 } = cartSlice.actions
+
+// actions
+export const fetchProduct = createAsyncThunk("cart/fetchProduct", async (_, thunkAPI) => {
+  const { dispatch, getState } = thunkAPI
+  const res = await api.getCurrentProduct()
+  console.log(res)
+  dispatch(updateCurrentProduct(res))
+  return res
+});
+
 
 export default cartSlice.reducer;
