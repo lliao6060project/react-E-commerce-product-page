@@ -1,12 +1,15 @@
 import type { CartState } from '@/common/types'
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getProduct } from "@/api";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { toast } from 'react-toastify';
+import api from '@/services'
 
+
+// actions
 export const fetchProduct = createAsyncThunk("cart/fetchProduct", async (_, thunkAPI) => {
   const { dispatch, getState } = thunkAPI
-  const res = await getProduct();
-  return res.data;
+  const res = await api.getCurrentProduct()
+  console.log(res)
+  return res
 });
 
 const initialState: CartState = {
@@ -33,9 +36,11 @@ export const cartSlice = createSlice({
         : state.count -= 1
     },
     addProdToCart: (state, { payload }): void => {
+      const cart_list = []
       state.cartCount += state.count
       state.count = 0
-      state.cartList.push(payload)
+      cart_list.push(payload)
+      state.cartList = Array.from(new Set([...cart_list]))
     },
     removeCartItem: (state): void => {
       state.cartCount = 0
@@ -47,7 +52,11 @@ export const cartSlice = createSlice({
     }
   },
 
-  extraReducers: {}
+  extraReducers: {
+    [(fetchProduct.fulfilled as any)]: (state, { payload }) => {
+      state.currentProduct = payload
+    },
+  }
 });
 
 export const {

@@ -1,7 +1,11 @@
 import type { AppDispatch, AppState } from '@/store/store'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProduct, addProdToCart, removeCartItem } from '@/store/cart'
+import {
+	fetchProduct,
+	addProdToCart,
+	removeCartItem
+} from '@/store/cart'
 
 import Navbar from './navbar'
 import TopBlock from './top-block';
@@ -16,27 +20,7 @@ const navList: string[] = [
 	'Contact'
 ]
 
-const product = {
-	subTitle: 'SNEAKER COMPANY',
-	title: 'Fall Limited Edition Sneakers',
-	desc: `
-		These low-profile sneakers are your perfect casual wear companion.
-		Featuring a durable rubber outer sole. they'll withstand everything the weather can offer.
-	`,
-	price: 250,
-	discount: 50,
-}
-
-const toCartProduct = (count: number) => {
-	const { title, price, discount } = product
-	return {
-		title: title,
-		price: (price * (discount / 100)),
-		totalPrice: (price * (discount / 100)) * count
-	}
-}
-
-const ECommerce = ({...props}) => {
+const ECommerce = () => {
 	const dispatch: AppDispatch = useDispatch();
 	const {
 		count,
@@ -45,9 +29,19 @@ const ECommerce = ({...props}) => {
 		cartList
 	} = useSelector((state: AppState) => state.cartSlice)
 
+	const handleAddToCart = () => {
+		const { name, price } = currentProduct
+		const addItem = {
+			name: name,
+			price: price?.discount,
+		}
+		dispatch(addProdToCart(addItem))
+	}
+
   useEffect(() => {
     dispatch(fetchProduct());
   }, [dispatch])
+
 
 	return (
 		<div className='layout mx-auto h-screen flex flex-col'>
@@ -61,10 +55,10 @@ const ECommerce = ({...props}) => {
 			<main className={`lg:w-10/12 flex-auto mx-auto`}>
 				<TopBlock
 					count={count}
-					product={product}
+					product={currentProduct}
 					onAddProdToCartClick={
 						() => count >= 1
-							? dispatch(addProdToCart(toCartProduct(count)))
+							? handleAddToCart()
 							: toast.error('count cannot be less than zero!', {
 						position: 'top-center',
 					})}
