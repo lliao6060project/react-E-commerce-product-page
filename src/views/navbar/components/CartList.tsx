@@ -108,7 +108,7 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
                         <div className='flex-shrink-0'>
                           <img
                             className='h-12 w-12 rounded-full'
-                            src={getImageUrl('image-product-1-thumbnail.jpg')}
+                            src={cartItem.image_url}
                           />
                         </div>
                         <div className='w-full text-sm leading-6'>
@@ -120,8 +120,8 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
                             {cartItem.name}
                           </a>
                           <div className='text-slate-500'>
-                            ${cartItem.price} x {count}
-                            <span className='font-bold text-black pl-3'>${ cartItem.price * count }</span>
+                            ${cartItem.price} x {cartItem.amount}
+                            <span className='font-bold text-black pl-3'>${ cartItem.price * cartItem.amount }</span>
                           </div>
                         </div>
                       </div>

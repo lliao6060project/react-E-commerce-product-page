@@ -9,4 +9,8 @@ export default {
   getCurrentProduct(data) {
     return api('get', '/product', data);
   },
+
+  getCartList(data) {
+    return api('get', '/cart_list', data);
+  },
 };

@@ -16,7 +16,12 @@ export default function initMock() {
     return apiData.mockDatas['product'];
   });
 
-  mockRequest('post', '/api/select', {
-    'type': '@integer()'
+  mockRequest('get', '/api/cart_list', async () => {
+    await delay(1500);
+    return apiData.mockDatas['cart_list'];
   });
+
+  // mockRequest('post', '/api/select', {
+  //   'type': '@integer()'
+  // });
 }
