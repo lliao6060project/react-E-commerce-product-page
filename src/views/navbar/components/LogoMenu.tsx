@@ -1,6 +1,6 @@
+import { mobileDevice } from '@/composable/useUtils'
 import type { PropsWithChildren } from 'react'
 import { useRef } from 'react'
-import { mobileDevice } from '@/composable/useUtils'
 import NavItem from './NavItem'
 
 interface LogoMenuProps extends PropsWithChildren {

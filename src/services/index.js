@@ -13,4 +13,12 @@ export default {
   getCartList(data) {
     return api('get', '/cart_list', data);
   },
+
+  AddProduct(data) {
+    return api('post', '/add_to_cart', data);
+  },
+
+  deleteProduct(data) {
+    return api('post', '/delete_prod', data);
+  },
 };

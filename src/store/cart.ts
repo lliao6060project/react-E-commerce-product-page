@@ -1,7 +1,8 @@
-import type { CartItem, CartState } from '@/common/types'
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+import type { CartItem, CartState } from '@/common/types';
+import api from '@/services';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from 'react-toastify';
-import api from '@/services'
+import { AppState } from './store';
 
 
 const initialState: CartState = {
@@ -41,10 +42,12 @@ export const cartSlice = createSlice({
       cart_list.push(payload)
       state.cartList = Array.from(new Set([...state.cartList, ...cart_list]))
     },
-    removeCartItem: (state): void => {
-      state.cartCount = 0
-      state.count = 0,
-      state.cartList.length = 0
+    removeCartItem: (state, { payload }): void => {
+      const { cartCount } = state
+      const { idxProd, amount } = payload
+      state.cartList.splice(idxProd, 1);
+      state.cartCount = cartCount > 0 ? cartCount - amount : 0
+      state.count = 0
     }
   },
   // extraReducers: {
@@ -67,7 +70,7 @@ export const {
 const delay = new Promise(resolve => setTimeout(resolve, 1500));
 
 export const fetchProduct = createAsyncThunk('cart/fetchProduct', async (_, thunkAPI) => {
-  const { dispatch, getState } = thunkAPI
+  const { dispatch } = thunkAPI
   const { data: res } = await api.getCurrentProduct()
   dispatch(updateCurrentProduct(res.data))
   return res.data
@@ -77,25 +80,23 @@ export const fetchCartList = createAsyncThunk('cart/fetchCartList', async (_, th
   const { dispatch } = thunkAPI
   const { data: res } = await api.getCartList()
 
-  const { products } = res.data
-  const sum = products.reduce((partialSum: number, a: { amount: number; }) => partialSum + a.amount, 0);
+  const { amount, products } = res.data
   dispatch(updateCartList({
-    sum: sum,
+    sum: amount,
     products: products
   }))
 
-  console.log(sum)
   return res.data
 });
 
 export const featchAddProdToCart = createAsyncThunk('cart/featchAddProdToCart', async (prod: CartItem, thunkAPI) => {
   const { dispatch } = thunkAPI
-  await delay
-  toast.promise(
-    delay,
+
+  await toast.promise(
+    api.AddProduct(),
       {
-        pending: 'Promise is pending',
-        success: 'Add cart success 👌',
+        pending: 'Waiting for adding prod...',
+        success: 'Add prod success 👌',
         error: 'Promise rejected 🤯',
       }, {
         position: 'top-center',
@@ -104,20 +105,28 @@ export const featchAddProdToCart = createAsyncThunk('cart/featchAddProdToCart', 
   dispatch(addProdToCart(prod))
 })
 
-export const featchRemoveProdFromCart = createAsyncThunk('cart/featchRemoveProdFromCart', async (_, thunkAPI) => {
-  const { dispatch } = thunkAPI
-  await delay
-  toast.promise(
-    delay,
+export const featchRemoveProdFromCart = createAsyncThunk('cart/featchRemoveProdFromCart', async (removeProd: CartItem, thunkAPI) => {
+  const { dispatch, getState } = thunkAPI
+  const cartList = (getState() as AppState).cartSlice.cartList
+  const idxProd = cartList.findIndex(
+    (prod) => prod.id === removeProd.id
+  );
+
+  await toast.promise(
+    api.deleteProduct(),
       {
-        pending: 'Promise is pending',
-        success: 'Remove cart success 👌',
+        pending: 'Waiting for delete prod...',
+        success: 'Remove prod success 👌',
         error: 'Promise rejected 🤯',
       }, {
         position: 'top-center',
       }
   )
-  dispatch(removeCartItem())
+
+  dispatch(removeCartItem({
+    idxProd,
+    amount: removeProd.amount
+  }))
 })
 
 

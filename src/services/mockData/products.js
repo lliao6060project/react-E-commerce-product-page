@@ -26,15 +26,28 @@ export default {
   cart_list: {
     code: 0,
     message: 'ok',
-    amount: 0,
     data: mock({
-      'products|1-3': [{
+      amount: 10,
+      'products|2': [{
+          id: "@id()",
           name: '@string("upper")',
           price: '@natural(99, 1000)',
-          amount: '@natural(1, 10)',
+          amount: 5,
           image_url: '@image("200x100", color())',
         }
       ]
     })
+  },
+
+  add_to_cart: {
+    code: 0,
+    message: 'ok',
+    data: {}
+  },
+
+  delete_prod: {
+    code: 0,
+    message: 'ok',
+    data: {}
   },
 };

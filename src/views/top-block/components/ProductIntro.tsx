@@ -1,7 +1,7 @@
 
-import type { PropsWithChildren } from 'react'
 import type { CartItem } from '@/common/types'
 import Counter from '@/components/Counter'
+import type { PropsWithChildren } from 'react'
 
 interface ProductIntroProps extends PropsWithChildren {
   count: number
