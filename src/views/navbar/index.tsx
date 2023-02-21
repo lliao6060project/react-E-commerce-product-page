@@ -1,7 +1,6 @@
 import type { CartItem } from '@/common/types'
 import { PropsWithChildren, useEffect, useRef } from 'react'
 
-import { isMobileDevice } from '@/composable/useUtils'
 import Avatar from './components/Avatar'
 import Cart from './components/Cart'
 import CartList from './components/CartList'
@@ -25,19 +24,15 @@ const Navbar = ({onRemoveCartItem, ...props}: NavbarProps) => {
 	const cartListRef = useRef(null)
 
 	const onCartClick = () => {
-		if(isMobileDevice()) {
-			const cartList = cartListRef.current as unknown as HTMLDivElement | any
-			cartList.classList.remove('hidden')
-			cartList.classList.add('fixed')
-		}
+		const cartList = cartListRef.current as unknown as HTMLDivElement | any
+		cartList.classList.remove('hidden')
+		cartList.classList.add('fixed')
 	}
 
 	const onCloseCartList = () => {
-		if(isMobileDevice()) {
-			const cartList = cartListRef.current as unknown as HTMLDivElement | any
-			cartList.classList.remove('fixed')
-			cartList.classList.add('hidden')
-		}
+		const cartList = cartListRef.current as unknown as HTMLDivElement | any
+		cartList.classList.remove('fixed')
+		cartList.classList.add('hidden')
 	}
 
 	useEffect(() => {
