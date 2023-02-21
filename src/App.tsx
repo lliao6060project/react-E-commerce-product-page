@@ -1,14 +1,16 @@
-import { useEffect, useRef } from 'react';
-import { Provider } from 'react-redux';
 import {
-	BrowserRouter as Router, Route, Routes
-} from 'react-router-dom';
+	BrowserRouter as Router,
+	Routes,
+	Route,
+} from 'react-router-dom'
+import { useEffect, useRef } from 'react'
+import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import store from '@/store/store';
+import Ecommerce from './views/index'
 import BackToTop from './components/BackToTop';
-import Ecommerce from './views/index';
 
 const Main = () => {
 	return (

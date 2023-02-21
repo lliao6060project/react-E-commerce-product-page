@@ -1,9 +1,10 @@
 import api from './api';
+// import { mock } from 'remockjs';
 
-if (import.meta.env.MODE === 'development') {
+// if (import.meta.env.MODE === 'development') {
   const initMock = (await import('./mock.js')).default;
   initMock();
-}
+// }
 
 export default {
   getCurrentProduct(data: Record<string, any> | undefined) {

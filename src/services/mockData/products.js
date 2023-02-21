@@ -27,10 +27,10 @@ export default {
     code: 0,
     message: 'ok',
     data: mock({
-      amount: 10,
-      'products|2': [{
+      amount: 15,
+      'products|3': [{
           id: "@id()",
-          name: '@string("upper")',
+          name: '@string("upper", 10, 15)',
           price: '@natural(99, 1000)',
           amount: 5,
           image_url: '@image("200x100", color())',

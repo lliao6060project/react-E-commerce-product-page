@@ -1,9 +1,12 @@
 import type { CartItem } from '@/common/types'
+import { numberFormat } from '@/composable/useUtils'
 import type { PropsWithChildren } from 'react'
 import { forwardRef } from 'react'
 
 interface CartListProps extends PropsWithChildren {
   items: Partial<CartItem[]> | unknown
+  cartTotal: number
+  count: number
   onRemoveCartItem: (id: number) => void
   onClose: () => void
 }
@@ -11,6 +14,8 @@ interface CartListProps extends PropsWithChildren {
 const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartListProps, ref) => {
   const {
     items,
+    cartTotal,
+    count,
     onRemoveCartItem,
     onClose
   } = props
@@ -21,7 +26,7 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
         className={`
           hidden
           left-2
-          top-[110px]
+          top-[105px]
           border
           border-gray-300/50
           rounded-md
@@ -79,14 +84,15 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
           >&times;</div>
           <div className={`
             relative
-            min-h-[34vh]
+            min-h-[52vh]
+            sm:min-h-[45vh]
             xl:h-[200px]
             ${(items as CartItem[]).length > 0 ? 'block' : 'hidden'}
           `}
           >
             <ul
               role='list'
-              className='mx-auto max-h-[250px] overflow-auto'
+              className='mx-auto max-h-48 xl:max-h-[190px] overflow-auto'
             >
               {
                 (items as CartItem[]).map((cartItem, i) => {
@@ -107,11 +113,11 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
                       <div className='flex gap-4'>
                         <div className='flex-shrink-0'>
                           <img
-                            className='h-12 w-12 rounded-full'
+                            className='h-10 w-10 md:h-12 md:w-12 rounded-full'
                             src={cartItem.image_url}
                           />
                         </div>
-                        <div className='w-full text-sm leading-6'>
+                        <div className='w-full text-xs md:text-sm leading-6'>
                           <a href='#'>
                             <span
                               className='absolute inset-0 rounded-xl'
@@ -120,8 +126,8 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
                             {cartItem.name}
                           </a>
                           <div className='text-slate-500'>
-                            ${cartItem.price} x {cartItem.amount}
-                            <span className='font-bold text-black pl-3'>${ cartItem.price * cartItem.amount }</span>
+                            ${numberFormat(cartItem.price)} x {cartItem.amount}
+                            <span className='font-bold text-black pl-3'>${ numberFormat(cartItem.price * cartItem.amount) }</span>
                           </div>
                         </div>
                       </div>
@@ -172,6 +178,33 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
               }
             </ul>
 
+            <div className='
+              w-full
+              grid
+              grid-cols-2
+              absolute
+              bottom-14
+              text-black
+              border-t
+              bg-white
+              font-bold
+              text-sm
+              md:text-base
+              p-2
+              xl:p-4
+              xl:px-3
+              xl:flex
+              xl:justify-between
+              xl:flex-wrap
+              xl:bottom-12
+            '>
+              <p>Subtotal</p>
+              <p className='text-right'>
+                <span className='block xl:hidden'>{count} x</span>
+                ${numberFormat(cartTotal)}.00
+              </p>
+              <p className='col-span-3 font-thin text-gray-400 pt-1 text-xs xl:text-sm'>Shipping and taxes calculated at checkout.</p>
+            </div>
             <div className={`
               absolute
               bottom-0
@@ -187,9 +220,13 @@ const CartList = forwardRef<HTMLDivElement, CartListProps>(({...props}: CartList
               mt-3
             `}
             >
-              <div className='text-lg text-white flex justify-around'>
+              <a
+                className='text-lg text-white flex justify-around'
+                target="_blank"
+                href="https://www.amazon.com/"
+              >
                 <span>Checkout</span>
-              </div>
+              </a>
             </div>
           </div>
         </div>

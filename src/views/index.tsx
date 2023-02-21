@@ -5,7 +5,7 @@ import {
 	fetchProduct
 } from '@/store/cart';
 import type { AppDispatch, AppState } from '@/store/store';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CartItem } from '@/common/types';
@@ -50,6 +50,14 @@ const ECommerce = () => {
 		dispatch(featchRemoveProdFromCart(target as CartItem))
 	}
 
+	// 類似vue的computed
+  const cartTotal = useMemo(() => {
+    const result = cartList.reduce((total, prod) => {
+			return total += (prod.price * prod.amount)
+		}, 0)
+    return result
+  }, [cartList]);
+
 
   useEffect(() => {
     const loadCatalogsAsync = async() => {
@@ -72,6 +80,7 @@ const ECommerce = () => {
 				count={cartCount}
 				navList={navList}
 				cartItems={cartList}
+				cartTotal={cartTotal}
 				onRemoveCartItem={(id) => handleDelProd(id)}
 			/>
 
