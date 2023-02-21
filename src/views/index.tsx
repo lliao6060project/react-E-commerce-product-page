@@ -1,16 +1,20 @@
-import type { AppDispatch, AppState } from '@/store/store'
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
-	fetchProduct,
-	addProdToCart,
-	removeCartItem
-} from '@/store/cart'
+	featchAddProdToCart,
+	featchRemoveProdFromCart,
+	fetchCartList,
+	fetchProduct
+} from '@/store/cart';
+import type { AppDispatch, AppState } from '@/store/store';
+import { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Navbar from './navbar'
-import TopBlock from './top-block';
-import ContentBlock from './content-block';
+import { CartItem } from '@/common/types';
+import { getImageUrl } from '@/composable/useImageUrl';
 import { toast } from 'react-toastify';
+import { mock } from "remockjs";
+import ContentBlock from './content-block';
+import Navbar from './navbar';
+import TopBlock from './top-block';
 
 const navList: string[] = [
 	'Collections',
@@ -32,15 +36,42 @@ const ECommerce = () => {
 	const handleAddToCart = () => {
 		const { name, price } = currentProduct
 		const addItem = {
+			id: mock('@id()'),
 			name: name,
 			price: price?.discount,
+			amount: count,
+			image_url: getImageUrl('image-product-1-thumbnail.jpg'),
 		}
-		dispatch(addProdToCart(addItem))
+		dispatch(featchAddProdToCart(addItem))
 	}
 
+	const handleDelProd = (id: number) => {
+		const target = cartList.find((item) => item.id === `${id}`)
+		dispatch(featchRemoveProdFromCart(target as CartItem))
+	}
+
+	// 類似vue的computed
+  const cartTotal = useMemo(() => {
+    const result = cartList.reduce((total, prod) => {
+			return total += (prod.price * prod.amount)
+		}, 0)
+    return result
+  }, [cartList]);
+
+
   useEffect(() => {
-    dispatch(fetchProduct());
-  }, [dispatch])
+    const loadCatalogsAsync = async() => {
+      try {
+        await dispatch(fetchProduct());
+        await dispatch(fetchCartList());
+        // ... and so on for all my catalogs
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    loadCatalogsAsync();
+  }, [])
 
 
 	return (
@@ -49,7 +80,8 @@ const ECommerce = () => {
 				count={cartCount}
 				navList={navList}
 				cartItems={cartList}
-				onRemoveCartItem={() => dispatch(removeCartItem())}
+				cartTotal={cartTotal}
+				onRemoveCartItem={(id) => handleDelProd(id)}
 			/>
 
 			<main className={`lg:w-10/12 flex-auto mx-auto`}>

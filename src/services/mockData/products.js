@@ -21,5 +21,33 @@ export default {
         normal: '@image("1000x1000", color())'
       }]
     })
-  }
+  },
+
+  cart_list: {
+    code: 0,
+    message: 'ok',
+    data: mock({
+      amount: 15,
+      'products|3': [{
+          id: "@id()",
+          name: '@string("upper", 10, 15)',
+          price: '@natural(99, 1000)',
+          amount: 5,
+          image_url: '@image("200x100", color())',
+        }
+      ]
+    })
+  },
+
+  add_to_cart: {
+    code: 0,
+    message: 'ok',
+    data: {}
+  },
+
+  delete_prod: {
+    code: 0,
+    message: 'ok',
+    data: {}
+  },
 };

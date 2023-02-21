@@ -1,6 +1,8 @@
-import { defineConfig, loadEnv } from 'vite'
-import react from '@vitejs/plugin-react'
-import { resolve } from 'path'
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+import { defineConfig, loadEnv } from 'vite';
+// https://blog.csdn.net/qq_43649223/article/details/127790918
+import topLevelAwait from 'vite-plugin-top-level-await';
 
 function pathResolve(dir) {
   return resolve(__dirname, dir);
@@ -98,6 +100,10 @@ export default defineConfig(({
   // },
   plugins: [
     react(),
+    topLevelAwait({
+      promiseExportName: '__tla',
+      promiseImportName: i => `__tla__${i}`
+    })
   ],
   envDir: pathResolve('./src/env'),
 }))

@@ -1,6 +1,6 @@
-import { useState, } from 'react';
+import Lightbox from '@/components/Lightbox';
 import { advancedSlides } from '@/components/lightbox/slides';
-import Lightbox from '@/components/Lightbox'
+import { useState } from 'react';
 
 const PhotoGallery = () => {
   const [open, setOpen] = useState(false)

@@ -5,3 +5,10 @@ export const isMobileDevice = () => {
   let isMobileDevice = mobileDevice.some(e => navigator.userAgent.match(e))
   return isMobileDevice
 }
+
+export const numberFormat = (num: number) => {
+  return num
+    .toString()
+    .split(/(?=(?:\d{3})+(?:\.|$))/g)
+    .join(",");
+};

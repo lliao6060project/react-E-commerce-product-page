@@ -1,22 +1,27 @@
 import type { CartItem } from '@/common/types'
-import { PropsWithChildren, useEffect } from 'react'
-import { useRef } from 'react'
+import { PropsWithChildren, useEffect, useRef } from 'react'
 
-import LogoMenu from './components/LogoMenu'
-import CartList from './components/CartList'
+import { isMobileDevice } from '@/composable/useUtils'
 import Avatar from './components/Avatar'
 import Cart from './components/Cart'
-import { isMobileDevice } from '@/composable/useUtils'
+import CartList from './components/CartList'
+import LogoMenu from './components/LogoMenu'
 
 interface NavbarProps extends PropsWithChildren {
 	count: number
 	navList: string[]
 	cartItems: Partial<CartItem[]> | unknown
-	onRemoveCartItem: () => void
+	cartTotal: number
+	onRemoveCartItem: (id: number) => void
 }
 
 const Navbar = ({onRemoveCartItem, ...props}: NavbarProps) => {
-	const { count, navList, cartItems } = props
+	const {
+		count,
+		navList,
+		cartItems,
+		cartTotal
+	} = props
 	const cartListRef = useRef(null)
 
 	const onCartClick = () => {
@@ -58,7 +63,8 @@ const Navbar = ({onRemoveCartItem, ...props}: NavbarProps) => {
 						ref={cartListRef}
 						count={count}
 						items={cartItems}
-						onRemoveCartItem={onRemoveCartItem}
+						cartTotal={cartTotal}
+						onRemoveCartItem={(id) => onRemoveCartItem(id)}
 						onClose={onCloseCartList}
 					/>
 				</div>

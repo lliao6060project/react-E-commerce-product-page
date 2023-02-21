@@ -1,7 +1,7 @@
+import { mobileDevice } from '@/composable/useUtils'
 import type { PropsWithChildren } from 'react'
 import { forwardRef } from 'react'
 import { Link } from 'react-scroll'
-import { mobileDevice } from '@/composable/useUtils'
 
 
 interface NavItemProps extends PropsWithChildren {

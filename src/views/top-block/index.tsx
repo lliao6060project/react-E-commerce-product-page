@@ -1,5 +1,5 @@
-import type { PropsWithChildren } from 'react'
 import type { CartItem } from '@/common/types'
+import type { PropsWithChildren } from 'react'
 
 import PhotoGallery from './components/PhotoGallery'
 import ProductIntro from './components/ProductIntro'
