@@ -101,7 +101,19 @@ const ECommerce = () => {
 				</div>
 			</main>
 
-			<footer className='flex-center h-[120px] shrink-0 bg-tritanomaly text-white'>footer</footer>
+			<footer className='flex-center h-[120px] shrink-0 bg-tritanomaly text-white'>
+				<div className='grid grid-cols-1 text-center'>
+					<p>2023 develop by Lindy </p>
+					<p>
+						<span className='pr-2'>design by </span>
+						<a 
+							href='https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6'
+							target='_blank'
+							className='underline underline-offset-1'
+						>frontendmentor.io</a>
+					</p>
+				</div>
+			</footer>
 		</div>
 	)
 }
