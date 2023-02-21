@@ -8,12 +8,13 @@ import type { AppDispatch, AppState } from '@/store/store';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { CartItem } from '@/common/types';
 import { getImageUrl } from '@/composable/useImageUrl';
 import { toast } from 'react-toastify';
+import { mock } from "remockjs";
 import ContentBlock from './content-block';
 import Navbar from './navbar';
 import TopBlock from './top-block';
-import { CartItem } from '@/common/types';
 
 const navList: string[] = [
 	'Collections',
@@ -35,7 +36,7 @@ const ECommerce = () => {
 	const handleAddToCart = () => {
 		const { name, price } = currentProduct
 		const addItem = {
-			id: '123-45-6789',
+			id: mock('@id()'),
 			name: name,
 			price: price?.discount,
 			amount: count,

@@ -24,7 +24,7 @@ export default function api(method: string, url: string, data: Record<string, an
           default:
             console.log(error.message)
         }
-      } 
+      }
       if (!window.navigator.onLine) {
         alert("網路出了點問題，請重新連線後重整網頁");
         return;

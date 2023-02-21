@@ -4,7 +4,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from 'react-toastify';
 import { AppState } from './store';
 
-
 const initialState: CartState = {
   count: 0,
   cartCount: 0,
@@ -46,7 +45,9 @@ export const cartSlice = createSlice({
       const { cartCount } = state
       const { idxProd, amount } = payload
       state.cartList.splice(idxProd, 1);
-      state.cartCount = cartCount > 0 ? cartCount - amount : 0
+      state.cartCount = cartCount > 0
+        ? cartCount - amount
+        : 0
       state.count = 0
     }
   },
@@ -71,14 +72,23 @@ const delay = new Promise(resolve => setTimeout(resolve, 1500));
 
 export const fetchProduct = createAsyncThunk('cart/fetchProduct', async (_, thunkAPI) => {
   const { dispatch } = thunkAPI
-  const { data: res } = await api.getCurrentProduct()
+  const { data: res } = await toast.promise(
+    api.getCurrentProduct({}),
+      {
+        pending: 'Waiting for getting prod...',
+        success: 'get prod success 👌',
+        error: 'Promise rejected 🤯',
+      }, {
+        position: 'top-center',
+      }
+  )
   dispatch(updateCurrentProduct(res.data))
   return res.data
 });
 
 export const fetchCartList = createAsyncThunk('cart/fetchCartList', async (_, thunkAPI) => {
   const { dispatch } = thunkAPI
-  const { data: res } = await api.getCartList()
+  const { data: res } = await api.getCartList({})
 
   const { amount, products } = res.data
   dispatch(updateCartList({
@@ -93,7 +103,7 @@ export const featchAddProdToCart = createAsyncThunk('cart/featchAddProdToCart', 
   const { dispatch } = thunkAPI
 
   await toast.promise(
-    api.AddProduct(),
+    api.AddProduct({}),
       {
         pending: 'Waiting for adding prod...',
         success: 'Add prod success 👌',
@@ -113,7 +123,7 @@ export const featchRemoveProdFromCart = createAsyncThunk('cart/featchRemoveProdF
   );
 
   await toast.promise(
-    api.deleteProduct(),
+    api.deleteProduct({}),
       {
         pending: 'Waiting for delete prod...',
         success: 'Remove prod success 👌',

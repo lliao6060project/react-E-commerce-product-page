@@ -4,7 +4,7 @@
 import { mockRequest, mockXHR } from 'remockjs';
 import apiData from './mockData';
 
-const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 export default function initMock() {
   mockXHR({

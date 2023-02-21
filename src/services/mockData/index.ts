@@ -1,6 +1,6 @@
 const mockDataFiles = import.meta.globEager("../mockData/*.js");
 
-const mockDataFilesList = {};
+const mockDataFilesList: any = {};
 const fileName = [];
 
 //取得所有資料檔案
@@ -11,7 +11,7 @@ for (const key in mockDataFiles) {
   keyName !== "mockApi" ? fileName.push(keyName) : "";
 }
 
-const mockDataArray = [];
+const mockDataArray: any = [];
 
 Object.entries(mockDataFilesList).forEach(([key]) => {
   let returnResult = {};
@@ -21,7 +21,7 @@ Object.entries(mockDataFilesList).forEach(([key]) => {
 });
 
 //合併資料
-const mockDatas = mockDataArray.reduce(function (target, key, index) {
+const mockDatas = mockDataArray.reduce(function (target: { [x: string]: any; }, key: any, index: string | number) {
   target[index] = key;
   return { ...target, ...target[index] };
 }, {});
